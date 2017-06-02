@@ -1,0 +1,49 @@
+parameters:
+    request_parameter_handler.class: StarterKit\CrudBundle\Services\RequestParameterHandler
+    list_request_handler.class: StarterKit\CrudBundle\Services\ListRequestHandler
+    single_resource_request_handler.class: StarterKit\CrudBundle\Services\SingleResourceRequestHandler
+    new_resource_creation_handler.class: StarterKit\CrudBundle\Services\NewResourceCreationHandler
+    form_factory_handler.class: StarterKit\CrudBundle\Services\FormFactoryHandler
+    crud_event_dispatcher.class: StarterKit\CrudBundle\Services\CrudEventDispatcher
+    flash_message_manager.class: StarterKit\CrudBundle\Services\FlashMessageManager
+    resource_voter.class: StarterKit\CrudBundle\Security\ResourceVoter
+    api_exeption_subscriber.class: StarterKit\CrudBundle\EventListener\ApiExceptionSubscriber
+
+
+
+services:
+    starter_kit.resource_voter:
+            class: "%resource_voter.class%"
+            arguments: ["@security.access.decision_manager","@request_parameter_handler"]
+            public: false
+            tags:
+                - { name: security.voter }
+            # small performance boost
+
+    request_parameter_handler:
+        class: "%request_parameter_handler.class%"
+        arguments: ["@request_stack","@service_container"]
+        #scope: request
+    list_request_handler:
+            class: "%list_request_handler.class%"
+            arguments: ["@request_parameter_handler","@doctrine.orm.entity_manager"]
+    single_resource_request_handler:
+                class: "%single_resource_request_handler.class%"
+                arguments: ["@request_parameter_handler","@doctrine.orm.entity_manager"]
+    new_resource_creation_handler:
+                class: "%new_resource_creation_handler.class%"
+                arguments: ["@request_parameter_handler","@doctrine.orm.entity_manager"]
+    form_factory_handler:
+                    class: "%form_factory_handler.class%"
+                    arguments: ["@request_parameter_handler","@doctrine.orm.entity_manager","@form.factory"]
+    crud_event_dispatcher:
+                        class: "%crud_event_dispatcher.class%"
+                        arguments: ["@request_parameter_handler","@event_dispatcher"]
+    flash_message_manager:
+                            class: "%flash_message_manager.class%"
+                            arguments: ["@request_parameter_handler"]
+    api_exception_subscriber:
+            class: "%api_exeption_subscriber.class%"
+            arguments: ['%kernel.debug%']
+            tags:
+                - { name: kernel.event_subscriber }

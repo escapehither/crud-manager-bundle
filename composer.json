@@ -1,0 +1,20 @@
+{
+    "name": "shorinmaru/CrudBundle",
+    "description": " a symfony bundle that manage crud",
+    "require": {
+        "symfony/symfony": "^3.2",
+        "symfony/serializer": "^3.2",
+        "white-october/pagerfanta-bundle": "^1.0",
+        "lexik/jwt-authentication-bundle": "^2.4"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^3.2",
+        "phpunit/phpunit": "^6.1"
+    },
+    "authors": [
+        {
+            "name": "shorinmaru",
+            "email": "sho_fukamachi@hotmail.fr"
+        }
+    ]
+}
