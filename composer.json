@@ -11,6 +11,8 @@
         "symfony/phpunit-bridge": "^3.2",
         "phpunit/phpunit": "^6.1"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "shorinmaru",
