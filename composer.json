@@ -1,5 +1,5 @@
 {
-    "name": "shorinmaru/CrudBundle",
+    "name": "shorinmaru/crudbundle",
     "description": " a symfony bundle that manage crud",
     "require": {
         "symfony/symfony": "^3.2",
