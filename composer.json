@@ -20,8 +20,7 @@
         "guzzlehttp/guzzle": "^6.2",
         "symfony/serializer": "^3.2",
         "white-october/pagerfanta-bundle": "^1.0",
-        "lexik/jwt-authentication-bundle": "^2.4",
-        "escapehither/security-manager-bundle": "dev-master"
+        "lexik/jwt-authentication-bundle": "^2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
