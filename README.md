@@ -44,7 +44,12 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new <vendor>\<bundle-name>\<bundle-long-name>(),
+             new EscapeHither\CrudManagerBundle\StarterKitCrudBundle(),
+             new EscapeHither\SecurityManagerBundle\StarterKitSecurityManagerBundle(),
+             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
         );
 
         // ...
