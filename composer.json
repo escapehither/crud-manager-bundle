@@ -18,7 +18,7 @@
         "knplabs/knp-menu-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "guzzlehttp/guzzle": "^6.2",
-        "symfony/serializer": "^-1.2",
+        "symfony/serializer": "^1.2",
         "white-october/pagerfanta-bundle": "^1.0",
         "lexik/jwt-authentication-bundle": "^2.4",
         "escapehither/security-manager-bundle": "dev-master"
