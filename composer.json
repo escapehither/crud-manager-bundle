@@ -21,7 +21,7 @@
         "symfony/serializer": "^1.2",
         "white-october/pagerfanta-bundle": "^1.0",
         "lexik/jwt-authentication-bundle": "^2.4",
-        "escapehither/security-manager-bundle": "^dev-master"
+        "escapehither/security-manager-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
