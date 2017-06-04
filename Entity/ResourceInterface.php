@@ -8,7 +8,7 @@
  * Time: 19:51
  */
 
-namespace StarterKit\CrudBundle\Entity;
+namespace EscapeHither\CrudManagerBundle\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 

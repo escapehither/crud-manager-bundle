@@ -8,12 +8,12 @@
  * Time: 11:48
  */
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use StarterKit\CrudBundle\Controller\Factory;
-use StarterKit\CrudBundle\Controller\ResourceFactory;
+use EscapeHither\CrudManagerBundle\Controller\Factory;
+use EscapeHither\CrudManagerBundle\Controller\ResourceFactory;
 use Doctrine\ORM\EntityManager;
 
 

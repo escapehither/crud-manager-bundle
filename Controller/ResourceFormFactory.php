@@ -6,12 +6,12 @@
  * Time: 23:03
  */
 
-namespace StarterKit\CrudBundle\Controller;
-use StarterKit\CrudBundle\Controller\Factory;
+namespace EscapeHither\CrudManagerBundle\Controller;
+use EscapeHither\CrudManagerBundle\Controller\Factory;
 
 /**
  * Class ResourceFormFactory create form factory
- * @package StarterKit\CrudBundle\Controller
+ * @package EscapeHither\CrudManagerBundle\Controller
  */
 class ResourceFormFactory extends Factory
 {

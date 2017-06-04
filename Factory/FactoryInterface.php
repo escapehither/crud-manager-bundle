@@ -8,7 +8,7 @@
  * Date: 25/11/16
  * Time: 22:42
  */
-namespace StarterKit\CrudBundle\Factory;
+namespace EscapeHither\CrudManagerBundle\Factory;
 
 Interface FactoryInterface {
 

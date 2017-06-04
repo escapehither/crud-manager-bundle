@@ -8,7 +8,7 @@
  * Time: 21:53
  */
 
-namespace StarterKit\CrudBundle\Api;
+namespace EscapeHither\CrudManagerBundle\Api;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

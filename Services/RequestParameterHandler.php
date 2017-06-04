@@ -9,9 +9,9 @@
  */
 
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 
-use StarterKit\CrudBundle\Entity\ResourceInterface;
+use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +44,6 @@ class RequestParameterHandler
         if($this->request){
             $this->format = $this->request->getRequestFormat();
         }
-
         $this->container = $container;
         $attributes = $this->getAttributes();
         if (!empty($attributes)) {

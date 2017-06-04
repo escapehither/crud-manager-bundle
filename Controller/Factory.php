@@ -6,13 +6,13 @@
  * Time: 23:23
  */
 
-namespace StarterKit\CrudBundle\Controller;
-use StarterKit\CrudBundle\Entity\ResourceInterface;
+namespace EscapeHither\CrudManagerBundle\Controller;
+use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
 
 
 /**
  * Class Factory
- * @package StarterKit\CrudBundle\Controller
+ * @package EscapeHither\CrudManagerBundle\Controller
  * This Factory is use to create any Resource
  */
 class Factory

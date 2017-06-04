@@ -8,14 +8,14 @@
  * Time: 22:13
  */
 
-namespace StarterKit\CrudBundle\EventListener;
+namespace EscapeHither\CrudManagerBundle\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use StarterKit\CrudBundle\Api\ApiProblemException;
+use EscapeHither\CrudManagerBundle\Api\ApiProblemException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
-use StarterKit\CrudBundle\Api\ApiProblem;
+use EscapeHither\CrudManagerBundle\Api\ApiProblem;
 use Symfony\Component\HttpFoundation\Response;
 
 class ApiExceptionSubscriber implements EventSubscriberInterface

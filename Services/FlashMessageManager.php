@@ -8,7 +8,7 @@
  * Time: 19:35
  */
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 
 
 class FlashMessageManager

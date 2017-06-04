@@ -1,13 +1,13 @@
 parameters:
-    request_parameter_handler.class: StarterKit\CrudBundle\Services\RequestParameterHandler
-    list_request_handler.class: StarterKit\CrudBundle\Services\ListRequestHandler
-    single_resource_request_handler.class: StarterKit\CrudBundle\Services\SingleResourceRequestHandler
-    new_resource_creation_handler.class: StarterKit\CrudBundle\Services\NewResourceCreationHandler
-    form_factory_handler.class: StarterKit\CrudBundle\Services\FormFactoryHandler
-    crud_event_dispatcher.class: StarterKit\CrudBundle\Services\CrudEventDispatcher
-    flash_message_manager.class: StarterKit\CrudBundle\Services\FlashMessageManager
-    resource_voter.class: StarterKit\CrudBundle\Security\ResourceVoter
-    api_exeption_subscriber.class: StarterKit\CrudBundle\EventListener\ApiExceptionSubscriber
+    request_parameter_handler.class: EscapeHither\CrudManagerBundle\Services\RequestParameterHandler
+    list_request_handler.class: EscapeHither\CrudManagerBundle\Services\ListRequestHandler
+    single_resource_request_handler.class: EscapeHither\CrudManagerBundle\Services\SingleResourceRequestHandler
+    new_resource_creation_handler.class: EscapeHither\CrudManagerBundle\Services\NewResourceCreationHandler
+    form_factory_handler.class: EscapeHither\CrudManagerBundle\Services\FormFactoryHandler
+    crud_event_dispatcher.class: EscapeHither\CrudManagerBundle\Services\CrudEventDispatcher
+    flash_message_manager.class: EscapeHither\CrudManagerBundle\Services\FlashMessageManager
+    resource_voter.class: EscapeHither\CrudManagerBundle\Security\ResourceVoter
+    api_exeption_subscriber.class: EscapeHither\CrudManagerBundle\EventListener\ApiExceptionSubscriber
 
 
 

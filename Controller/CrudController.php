@@ -8,24 +8,24 @@
  * file that was distributed with this source code.
  */
 
-namespace StarterKit\CrudBundle\Controller;
+namespace EscapeHither\CrudManagerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use StarterKit\CrudBundle\Entity\Resource;
+use EscapeHither\CrudManagerBundle\Entity\Resource;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use StarterKit\CrudBundle\Event\ResourceCreateEvent;
+use EscapeHither\CrudManagerBundle\Event\ResourceCreateEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Form\FormInterface;
-use StarterKit\CrudBundle\Api\ApiProblem;
-use StarterKit\CrudBundle\Api\ApiProblemException;
+use EscapeHither\CrudManagerBundle\Api\ApiProblem;
+use EscapeHither\CrudManagerBundle\Api\ApiProblemException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use StarterKit\CrudBundle\Services\RequestParameterHandler;
+use EscapeHither\CrudManagerBundle\Services\RequestParameterHandler;
 
 class CrudController extends Controller implements ContainerAwareInterface
 {
@@ -36,6 +36,10 @@ class CrudController extends Controller implements ContainerAwareInterface
     public function indexAction(Request $request)
     {
         $requestParameterHandler = $this->get('request_parameter_handler');
+        //dump($request);
+        dump($requestParameterHandler);
+        die();
+
         $format=$requestParameterHandler->getFormat();
         // ADD Check if the user have authorisation before proceeding from the request.
         $listRequestHandler = $this->get('list_request_handler');

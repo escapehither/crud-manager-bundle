@@ -8,10 +8,10 @@
  * Date: 27/12/16
  * Time: 16:03
  */
-namespace StarterKit\CrudBundle\Event;
+namespace EscapeHither\CrudManagerBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Response;
-use StarterKit\CrudBundle\Entity\Resource;
+use EscapeHither\CrudManagerBundle\Entity\Resource;
 /**
  * The Resource.create event is dispatched each time a new resource is created
  * in the system.

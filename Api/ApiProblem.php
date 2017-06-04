@@ -8,7 +8,7 @@
  * Time: 20:10
  */
 
-namespace StarterKit\CrudBundle\Api;
+namespace EscapeHither\CrudManagerBundle\Api;
 /**
  * A wrapper for holding data to be used for a application/problem+json response
  */
