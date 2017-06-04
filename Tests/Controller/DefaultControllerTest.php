@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\CrudBundle\Tests\Controller;
+namespace EscapeHither\CrudManagerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

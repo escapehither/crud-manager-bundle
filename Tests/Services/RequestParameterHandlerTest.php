@@ -8,8 +8,8 @@
  * Date: 28/01/17
  * Time: 17:37
  */
-namespace StarterKit\CrudBundle\Tests\Services;
-use StarterKit\CrudBundle\Services\RequestParameterHandler;
+namespace EscapeHither\CrudManagerBundle\Tests\Services;
+use EscapeHither\CrudManagerBundle\Services\RequestParameterHandler;
 
 class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
 {

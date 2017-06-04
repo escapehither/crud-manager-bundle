@@ -8,10 +8,10 @@
  * Time: 19:13
  */
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 use Symfony\Component\Form\FormFactory;
 use Doctrine\ORM\EntityManager;
-use StarterKit\CrudBundle\Entity\Resource;
+use EscapeHither\CrudManagerBundle\Entity\Resource;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\Form\Form;
 class FormFactoryHandler {
@@ -32,6 +32,7 @@ class FormFactoryHandler {
     function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em, FormFactory $formFactory)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->em = $em;
         $this->formFactory = $formFactory;
 

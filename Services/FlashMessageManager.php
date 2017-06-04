@@ -8,7 +8,7 @@
  * Time: 19:35
  */
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 
 
 class FlashMessageManager
@@ -23,7 +23,7 @@ class FlashMessageManager
     }
     public function addFlash($eventName){
 
-        $this->requestParameterHandler;
+        $this->requestParameterHandler->build();
         $request = $this->requestParameterHandler->getRequest();
         $resourceName=$this->requestParameterHandler->getResourceName();
         if($eventName =='resource.post.create'){

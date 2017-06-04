@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\CrudBundle\Controller;
+namespace EscapeHither\CrudManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

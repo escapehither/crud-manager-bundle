@@ -8,7 +8,7 @@
  * Time: 21:04
  */
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 use Doctrine\ORM\EntityManager;
 
 
@@ -29,6 +29,7 @@ class SingleResourceRequestHandler {
     function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->em = $em;
 
         

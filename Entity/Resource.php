@@ -1,5 +1,5 @@
 <?php
-namespace StarterKit\CrudBundle\Entity;
+namespace EscapeHither\CrudManagerBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;

@@ -8,7 +8,7 @@
  * Time: 22:06
  */
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 
 use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;;
@@ -22,6 +22,7 @@ class CrudEventDispatcher {
     function __construct(RequestParameterHandler $requestParameterHandler,EventDispatcherInterface $dispatcher)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->dispatcher= $dispatcher;
 
 

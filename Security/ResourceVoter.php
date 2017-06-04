@@ -8,13 +8,13 @@
  * Date: 26/03/17
  * Time: 19:48
  */
-namespace StarterKit\CrudBundle\Security;
-use StarterKit\CrudBundle\Entity\ResourceInterface;
-use StarterKit\SecurityManagerBundle\Entity\User;
+namespace EscapeHither\CrudManagerBundle\Security;
+use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
+use EscapeHither\SecurityManagerBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
-use StarterKit\CrudBundle\Services\RequestParameterHandler;
+use EscapeHither\CrudManagerBundle\Services\RequestParameterHandler;
 
 class ResourceVoter extends Voter{
 // these strings are just invented: you can use anything

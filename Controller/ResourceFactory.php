@@ -6,8 +6,8 @@
  * Time: 22:26
  */
 
-namespace StarterKit\CrudBundle\Controller;
-use StarterKit\CrudBundle\Controller\Factory;
+namespace EscapeHither\CrudManagerBundle\Controller;
+use EscapeHither\CrudManagerBundle\Controller\Factory;
 
 
 class ResourceFactory extends Factory

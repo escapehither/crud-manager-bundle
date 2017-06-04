@@ -8,7 +8,7 @@
  * Time: 21:04
  */
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 use Doctrine\ORM\EntityManager;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
@@ -32,6 +32,7 @@ class ListRequestHandler {
     function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->em = $em;
         $this->request = $this->requestParameterHandler->getRequest();
         $this->container = $this->requestParameterHandler->container;

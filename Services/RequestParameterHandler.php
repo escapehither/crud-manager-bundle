@@ -9,9 +9,9 @@
  */
 
 
-namespace StarterKit\CrudBundle\Services;
+namespace EscapeHither\CrudManagerBundle\Services;
 
-use StarterKit\CrudBundle\Entity\ResourceInterface;
+use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +22,9 @@ class RequestParameterHandler
     protected $name;
     protected $bundleName;
     protected $request;
+    protected $requestStack;
     protected $resourceName;
+    protected $resourceServiceName;
     protected $resourceConfigName;
     protected $resourceViewName;
     protected $themePath;
@@ -40,12 +42,16 @@ class RequestParameterHandler
 
     function __construct(RequestStack $requestStack, Container $container)
     {
-        $this->request = $requestStack->getCurrentRequest();
+        $this->requestStack = $requestStack;
+        $this->container = $container;
+
+    }
+    public function build(){
+        $this->request = $this->requestStack->getCurrentRequest();
         if($this->request){
             $this->format = $this->request->getRequestFormat();
         }
 
-        $this->container = $container;
         $attributes = $this->getAttributes();
         if (!empty($attributes)) {
             $this->resourceName = $attributes['name'];
@@ -65,13 +71,13 @@ class RequestParameterHandler
                 return;
             }
             if (in_array($attributes['action'], $action_list)) {
+                // use when call resource configuration parameter.
+                $this->resourceConfigName = 'resource-'.$attributes['nameConfig'];
 
-                if ($this->container->hasParameter(
-                  'resource-'.$this->resourceName
-                )
-                ) {
+                if ($this->container->hasParameter($this->resourceConfigName)) {
+
                     $parameters = $this->container->getParameter(
-                      'resource-'.$this->resourceName
+                      $this->resourceConfigName
                     );
                     $this->repositoryClass = $parameters['entity'];
                 }
@@ -81,8 +87,6 @@ class RequestParameterHandler
                 //$this->repositoryClass = $attributes['rootBundle'] . ':' . $attributes['resource'] ;
             }
 
-            // use when call resource configuration parameter.
-            $this->resourceConfigName = 'resource-'.$attributes['nameConfig'];
             // use when call resource configuration parameter.
             $this->resourceServiceName = 'resource.'.$attributes['nameConfig'];
             // The name use for generating the view.
