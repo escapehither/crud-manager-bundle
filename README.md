@@ -59,6 +59,15 @@ class AppKernel extends Kernel
 }
 ```
 
+7. Import config file in `app/config/config.yml` for default filter set configuration:
+
+    ```yaml
+    imports:
+       - { resource: "@EscapeHitherCrudManagerBundle/Resources/config/services.yml" }
+    ```
+
+
+
 1. Install it:
 
     ```bash
