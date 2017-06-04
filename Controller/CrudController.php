@@ -35,14 +35,10 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function indexAction(Request $request)
     {
-        $requestParameterHandler = $this->get('request_parameter_handler');
-        //dump($request);
-        dump($requestParameterHandler);
-        die();
-
+        $requestParameterHandler = $this->getRequestParameterHandler();
         $format=$requestParameterHandler->getFormat();
         // ADD Check if the user have authorisation before proceeding from the request.
-        $listRequestHandler = $this->get('list_request_handler');
+        $listRequestHandler = $this->get('escapehither.crud_list_request_handler');
         $resources = $listRequestHandler->process();
 
         if($format=='html'){
@@ -51,7 +47,6 @@ class CrudController extends Controller implements ContainerAwareInterface
         }
 
             $serializer = $this->getSerializer();
-
             $jsonContent = $serializer->serialize($resources, 'json');
             $response = new Response($jsonContent, 200);
             $response->headers->set('Content-Type', 'application/json');
@@ -72,7 +67,7 @@ class CrudController extends Controller implements ContainerAwareInterface
     public function newAction(Request $request)
     {
 
-        $requestParameterHandler = $this->get('request_parameter_handler');
+        $requestParameterHandler = $this->getRequestParameterHandler();
         $resourceName = $requestParameterHandler->getResourceViewName();
         $requireRole = 'ROLE_'.strtoupper($resourceName).'_CREATE';
         $this->denyAccessUnlessGranted(
@@ -81,12 +76,12 @@ class CrudController extends Controller implements ContainerAwareInterface
           'Unable to access this page!'
         );
 
-        $dispatcher = $this->get('crud_event_dispatcher');
-        $formFactoryHandler = $this->get('form_factory_handler');
+        $dispatcher = $this->get('escapehither.crud_event_dispatcher');
+        $formFactoryHandler = $this->get('escapehither.crud_form_factory_handler');
         $newResourceCreationHandler = $this->get(
-          'new_resource_creation_handler'
+          'escapehither.crud_new_resource_creation_handler'
         );
-        $flashMessageManager = $this->get('flash_message_manager');
+        $flashMessageManager = $this->get('escapehither.crud_flash_message_manager');
         $newResource = $newResourceCreationHandler->process($this->container);
         $LoadPageEvent = new ResourceCreateEvent($newResource);
         $dispatcher->dispatch(
@@ -140,9 +135,9 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function showAction($id)
     {
-        $requestParameterHandler = $this->get('request_parameter_handler');
+        $requestParameterHandler = $this->getRequestParameterHandler();
         $SingleResourceRequestHandler = $this->get(
-          'single_resource_request_handler'
+          'escapehither.crud_single_resource_request_handler'
         );
         $resource = $SingleResourceRequestHandler->process($id);
         if ($resource != null) {
@@ -174,13 +169,13 @@ class CrudController extends Controller implements ContainerAwareInterface
     public function editAction(Request $request, $id)
     {
 
-        $dispatcher = $this->get('crud_event_dispatcher');
-        $requestParameterHandler = $this->get('request_parameter_handler');
-        $formFactoryHandler = $this->get('form_factory_handler');
-        $flashMessageManager = $this->get('flash_message_manager');
+        $dispatcher = $this->get('escapehither.crud_event_dispatcher');
+        $requestParameterHandler = $this->getRequestParameterHandler();
+        $formFactoryHandler = $this->get('escapehither.crud_form_factory_handler');
+        $flashMessageManager = $this->get('escapehither.crud_flash_message_manager');
         $resourceName = $requestParameterHandler->getResourceViewName();
         $SingleResourceRequestHandler = $this->get(
-          'single_resource_request_handler'
+          'escapehither.crud_single_resource_request_handler'
         );
         $resource = $SingleResourceRequestHandler->process($id);
         if ($resource != null) {
@@ -257,12 +252,12 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function deleteAction(Request $request, $id)
     {
-        $dispatcher = $this->get('crud_event_dispatcher');
-        $requestParameterHandler = $this->get('request_parameter_handler');
-        $flashMessageManager = $this->get('flash_message_manager');
+        $dispatcher = $this->get('escapehither.crud_event_dispatcher');
+        $requestParameterHandler = $this->getRequestParameterHandler();
+        $flashMessageManager = $this->get('escapehither.crud_flash_message_manager');
         $resourceName = $requestParameterHandler->getResourceViewName();
         $SingleResourceRequestHandler = $this->get(
-          'single_resource_request_handler'
+          'escapehither.crud_single_resource_request_handler'
         );
         $resource = $SingleResourceRequestHandler->process($id);
         if ($resource != null) {
@@ -344,16 +339,16 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function apiNewAction(Request $request)
     {
-        $requestParameterHandler = $this->get('request_parameter_handler');
+        $requestParameterHandler = $this->getRequestParameterHandler();
         $resourceName = $requestParameterHandler->getResourceViewName();
         $requireRole = 'ROLE_'.strtoupper($resourceName).'_CREATE';
         $this->denyAccessUnlessGranted($requireRole, null, 'Unable to access this page!');
-        $dispatcher = $this->get('crud_event_dispatcher');
-        $formFactoryHandler = $this->get('form_factory_handler');
+        $dispatcher = $this->get('escapehither.crud_event_dispatcher');
+        $formFactoryHandler = $this->get('escapehither.crud_form_factory_handler');
         $newResourceCreationHandler = $this->get(
-          'new_resource_creation_handler'
+          'escapehither.crud_new_resource_creation_handler'
         );
-        $flashMessageManager = $this->get('flash_message_manager');
+        $flashMessageManager = $this->get('escapehither.crud_flash_message_manager');
         $newResource = $newResourceCreationHandler->process($this->container);
         $LoadPageEvent = new ResourceCreateEvent($newResource);
         $dispatcher->dispatch(ResourceCreateEvent::LOAD_CREATE_RESOURCE, $resourceName, $LoadPageEvent);
@@ -408,10 +403,10 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function ApiShowAction($id)
     {
-        $requestParameterHandler = $this->get('request_parameter_handler');
+        $requestParameterHandler = $this->getRequestParameterHandler();
         // TODO add costume repository get resource method.
         $SingleResourceRequestHandler = $this->get(
-          'single_resource_request_handler'
+          'escapehither.crud_single_resource_request_handler'
         );
         $resource = $SingleResourceRequestHandler->process($id);
 
@@ -439,7 +434,7 @@ class CrudController extends Controller implements ContainerAwareInterface
     public function apiIndexAction()
     {
         // TODO ADD Check if the user have authorisation before proceeding from the request.
-        $listRequestHandler = $this->get('list_request_handler');
+        $listRequestHandler = $this->get('escapehither.crud_list_request_handler');
         $resources = $listRequestHandler->process();
         $serializer = $this->getSerializer();
         $data = ['data' => $resources];
@@ -460,13 +455,13 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function apiEditAction(Request $request, $id)
     {
-        $dispatcher = $this->get('crud_event_dispatcher');
-        $requestParameterHandler = $this->get('request_parameter_handler');
-        $formFactoryHandler = $this->get('form_factory_handler');
-        $flashMessageManager = $this->get('flash_message_manager');
+        $dispatcher = $this->get('escapehither.crud_event_dispatcher');
+        $requestParameterHandler = $this->getRequestParameterHandler();
+        $formFactoryHandler = $this->get('escapehither.crud_form_factory_handler');
+        $flashMessageManager = $this->get('escapehither.crud_flash_message_manager');
         $resourceName = $requestParameterHandler->getResourceViewName();
         $SingleResourceRequestHandler = $this->get(
-          'single_resource_request_handler'
+          'escapehither.crud_single_resource_request_handler'
         );
         $resource = $SingleResourceRequestHandler->process($id);
         if ($resource != null) {
@@ -542,12 +537,12 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function apiDeleteAction($id)
     {
-        $dispatcher = $this->get('crud_event_dispatcher');
-        $requestParameterHandler = $this->get('request_parameter_handler');
-        $flashMessageManager = $this->get('flash_message_manager');
+        $dispatcher = $this->get('escapehither.crud_event_dispatcher');
+        $requestParameterHandler = $this->getRequestParameterHandler();
+        $flashMessageManager = $this->get('escapehither.crud_flash_message_manager');
         $resourceName = $requestParameterHandler->getResourceViewName();
         $SingleResourceRequestHandler = $this->get(
-          'single_resource_request_handler'
+          'escapehither.crud_single_resource_request_handler'
         );
         $resource = $SingleResourceRequestHandler->process($id);
         if ($resource) {
@@ -664,6 +659,17 @@ class CrudController extends Controller implements ContainerAwareInterface
         $apiProblem->set('errors', $errors);
         throw new ApiProblemException($apiProblem);
 
+    }
+
+    /**
+     * @return \EscapeHither\CrudManagerBundle\Services\RequestParameterHandler
+     */
+    private function getRequestParameterHandler()
+    {
+        $requestParameterHandler = $this->get('escapehither.crud_request_parameter_handler');
+        $requestParameterHandler->build();
+
+        return $requestParameterHandler;
     }
 
 

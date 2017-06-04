@@ -32,6 +32,7 @@ class FormFactoryHandler {
     function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em, FormFactory $formFactory)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->em = $em;
         $this->formFactory = $formFactory;
 

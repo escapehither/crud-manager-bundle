@@ -29,6 +29,7 @@ class SingleResourceRequestHandler {
     function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->em = $em;
 
         

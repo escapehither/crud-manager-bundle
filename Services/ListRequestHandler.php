@@ -32,6 +32,7 @@ class ListRequestHandler {
     function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->em = $em;
         $this->request = $this->requestParameterHandler->getRequest();
         $this->container = $this->requestParameterHandler->container;

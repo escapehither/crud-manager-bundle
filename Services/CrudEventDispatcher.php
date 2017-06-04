@@ -22,6 +22,7 @@ class CrudEventDispatcher {
     function __construct(RequestParameterHandler $requestParameterHandler,EventDispatcherInterface $dispatcher)
     {
         $this->requestParameterHandler = $requestParameterHandler;
+        $this->requestParameterHandler->build();
         $this->dispatcher= $dispatcher;
 
 
