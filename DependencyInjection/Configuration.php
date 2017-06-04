@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('starter_kit_crud');
+        $rootNode = $treeBuilder->root('escape_hither_crud_manager');
         $rootNode
             ->children()
                 ->arrayNode('resources')

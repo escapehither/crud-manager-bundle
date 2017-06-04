@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Definition;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class StarterKitCrudExtension extends Extension
+class EscapeHitherCrudManagerExtension extends Extension
 {
     /**
      * {@inheritdoc}
