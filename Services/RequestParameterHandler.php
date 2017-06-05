@@ -63,8 +63,10 @@ class RequestParameterHandler
               'showAction',
               'apiShowAction',
               'newAction',
+              'apiNewAction',
               'deleteAction',
               'apiDeleteAction',
+
             ];
 
             if ($this->resourceName == "redirect") {
