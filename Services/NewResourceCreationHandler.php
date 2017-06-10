@@ -51,7 +51,7 @@ class NewResourceCreationHandler implements ContainerAwareInterface {
     {
         $this->container = $container;
     }
-    public function process($container){
+    public function process(ContainerInterface $container){
 
         $parameter = $container->getParameter($this->requestParameterHandler->getResourceConfigName());
         if(isset($parameter['factory'])){
