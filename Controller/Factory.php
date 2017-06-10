@@ -18,7 +18,8 @@ use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
 class Factory
 {
     /**
-     * @param $class_name The required class of your resource
+     * @param $class_name
+     *   the required class of your resource
      * @return ResourceInterface
      */
 
