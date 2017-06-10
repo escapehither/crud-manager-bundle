@@ -664,7 +664,7 @@ class CrudController extends Controller implements ContainerAwareInterface
     /**
      * @return \EscapeHither\CrudManagerBundle\Services\RequestParameterHandler
      */
-    private function getRequestParameterHandler()
+    protected function getRequestParameterHandler()
     {
         $requestParameterHandler = $this->get('escapehither.crud_request_parameter_handler');
         $requestParameterHandler->build();
