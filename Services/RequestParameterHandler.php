@@ -39,6 +39,7 @@ class RequestParameterHandler
     protected $formClass;
     protected $factoryServiceName;
     protected $format;
+    protected $securityConfig;
 
     function __construct(RequestStack $requestStack, Container $container)
     {
@@ -112,6 +113,7 @@ class RequestParameterHandler
             // factory configuration
             $this->factoryConfig = $attributes['factory'];
             $this->formConfig = $attributes['form'];
+            $this->securityConfig = $attributes['security'];
         }
 
     }
@@ -266,6 +268,7 @@ class RequestParameterHandler
             $attributes['repository'] = $this->getRepositoryConfig();
             $attributes['factory'] = $this->getFactoryConfig();
             $attributes['form'] = $this->getFormConfig();
+            $attributes['security'] = $this->getSecurityConfig();
         }
 
 
@@ -356,6 +359,17 @@ class RequestParameterHandler
         $FormConfig = $this->request->attributes->get('form');
 
         return $FormConfig;
+
+    }
+    /**
+     *  Get The security Configuration.
+     * @return mixed
+     */
+    public function getSecurityConfig()
+    {
+        $securityConfig = $this->request->attributes->get('security');
+
+        return $securityConfig;
 
     }
 

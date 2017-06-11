@@ -12,7 +12,6 @@ namespace EscapeHither\CrudManagerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use EscapeHither\CrudManagerBundle\Entity\Resource;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use EscapeHither\CrudManagerBundle\Event\ResourceCreateEvent;
@@ -66,16 +65,10 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     public function newAction(Request $request)
     {
-
         $requestParameterHandler = $this->getRequestParameterHandler();
-        $resourceName = $requestParameterHandler->getResourceViewName();
-        $requireRole = 'ROLE_'.strtoupper($resourceName).'_CREATE';
-        $this->denyAccessUnlessGranted(
-          $requireRole,
-          null,
-          'Unable to access this page!'
-        );
 
+        $resourceName = $requestParameterHandler->getResourceViewName();
+        $this->securityCheck($requestParameterHandler, $resourceName);
         $dispatcher = $this->get('escapehither.crud_event_dispatcher');
         $formFactoryHandler = $this->get('escapehither.crud_form_factory_handler');
         $newResourceCreationHandler = $this->get(
@@ -91,7 +84,6 @@ class CrudController extends Controller implements ContainerAwareInterface
         );
         $form = $formFactoryHandler->createForm($newResource, $this->container);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // create the the resource create event and dispatch it
             $event = new ResourceCreateEvent($newResource);
@@ -112,7 +104,6 @@ class CrudController extends Controller implements ContainerAwareInterface
             $flashMessageManager->addFlash(
               ResourceCreateEvent::POST_CREATE_RESOURCE
             );
-
             return $this->redirectToRoute(
               $requestParameterHandler->getRedirectionRoute(),
               $requestParameterHandler->getRedirectionParameter($newResource)
@@ -670,6 +661,33 @@ class CrudController extends Controller implements ContainerAwareInterface
         $requestParameterHandler->build();
 
         return $requestParameterHandler;
+    }
+
+    /**
+     * @param RequestParameterHandler $requestParameterHandler
+     * @param $resourceName
+     */
+    protected function securityCheck(RequestParameterHandler $requestParameterHandler, $resourceName) {
+        $securityConfig = $requestParameterHandler->getSecurityConfig();
+
+        if(empty($securityConfig)) {
+            $requireRole = 'ROLE_' . strtoupper($resourceName) . '_CREATE';
+            $this->denyAccessUnlessGranted(
+                $requireRole,
+                NULL,
+                'Unable to access this page!'
+            );
+        }else{
+            if(isset($securityConfig['check']) && $securityConfig['check']){
+                $requireRole = $securityConfig['check'];
+                $this->denyAccessUnlessGranted(
+                    $requireRole,
+                    NULL,
+                    'Unable to access this page!'
+                );
+            }
+
+        }
     }
 
 
