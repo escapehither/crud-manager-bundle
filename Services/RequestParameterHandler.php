@@ -40,6 +40,8 @@ class RequestParameterHandler
     protected $factoryServiceName;
     protected $format;
     protected $securityConfig;
+    protected $routeName;
+    protected $actionName;
 
     function __construct(RequestStack $requestStack, Container $container)
     {
@@ -114,6 +116,9 @@ class RequestParameterHandler
             $this->factoryConfig = $attributes['factory'];
             $this->formConfig = $attributes['form'];
             $this->securityConfig = $attributes['security'];
+            $this->actionName = $attributes['action'];
+            $this->routeName = $attributes['_route'];
+
         }
 
     }
@@ -125,6 +130,22 @@ class RequestParameterHandler
     {
         return $this->request;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getActionName() {
+        return $this->actionName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRouteName() {
+        return $this->routeName;
+    }
+
+
 
     /**
      * @return string
@@ -265,6 +286,7 @@ class RequestParameterHandler
             } else {
                 $attributes['action'] = null;
             }
+            $attributes['_route'] =$this->request->attributes->get('_route');
             $attributes['repository'] = $this->getRepositoryConfig();
             $attributes['factory'] = $this->getFactoryConfig();
             $attributes['form'] = $this->getFormConfig();
@@ -368,7 +390,6 @@ class RequestParameterHandler
     public function getSecurityConfig()
     {
         $securityConfig = $this->request->attributes->get('security');
-
         return $securityConfig;
 
     }

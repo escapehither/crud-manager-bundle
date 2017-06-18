@@ -25,6 +25,7 @@ use EscapeHither\CrudManagerBundle\Api\ApiProblem;
 use EscapeHither\CrudManagerBundle\Api\ApiProblemException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use EscapeHither\CrudManagerBundle\Services\RequestParameterHandler;
+use Symfony\Component\Form\Exception\LogicException;
 
 class CrudController extends Controller implements ContainerAwareInterface
 {
@@ -66,7 +67,6 @@ class CrudController extends Controller implements ContainerAwareInterface
     public function newAction(Request $request)
     {
         $requestParameterHandler = $this->getRequestParameterHandler();
-
         $resourceName = $requestParameterHandler->getResourceViewName();
         $this->securityCheck($requestParameterHandler, $resourceName);
         $dispatcher = $this->get('escapehither.crud_event_dispatcher');
@@ -306,6 +306,12 @@ class CrudController extends Controller implements ContainerAwareInterface
      */
     private function createDeleteForm(RequestParameterHandler $requestParameterHandler, $action = false) {
         $route = $requestParameterHandler->getDeleteRoute();
+
+        if($action & !$route){
+            $actionName = $requestParameterHandler->getActionName();
+            $routeName = $requestParameterHandler->getRouteName();
+            throw new LogicException(' The parameter delete_route is require for '.$actionName.' call in route :'.$routeName);
+        }
         if ($route) {
             $parameter = $requestParameterHandler->getRouteParameter();
             $deleteForm = $this->createFormBuilder()
