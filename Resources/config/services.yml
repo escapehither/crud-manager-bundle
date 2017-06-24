@@ -47,3 +47,7 @@ services:
             arguments: ['%kernel.debug%']
             tags:
                 - { name: kernel.event_subscriber }
+    kernel.listener.escapehither.response_listener:
+        class: EscapeHither\CrudManagerBundle\Listener\ResponseListener
+        tags:
+           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
