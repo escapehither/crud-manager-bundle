@@ -437,7 +437,7 @@ class RequestParameterHandler
         } elseif (isset($paramTemplate)) {
             return $paramTemplate;
         } else {
-            $path = $this->getInfoFromAction($attributes,'path');
+            $path = $path = $this->getInfoFromAction($attributes,'path');
 
         }
 
@@ -474,8 +474,12 @@ class RequestParameterHandler
             }
 
         }
-        $route = $this->getInfoFromAction($attributes,'route');
-
+        $route = NULL;
+        if($attributes['action']=='indexAction' || $attributes['action']=='deleteAction'){
+            $route = $attributes['nameConfig']. '_index';
+        }elseif($attributes['action']=='newAction' || $attributes['action']=='editAction'){
+            $route = $attributes['nameConfig']. '_show';
+        }
 
 
         return $route;
