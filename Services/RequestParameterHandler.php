@@ -439,18 +439,22 @@ class RequestParameterHandler
         } else {
             switch ($attributes['action']) {
                 case "indexAction":
-                    $path = $attributes['template'].'/index.html.twig';
+                    $suffix = '/index.html.twig';
                     break;
                 case "newAction":
-                    $path = $attributes['template'].'/new.html.twig';
+                    $suffix  = '/new.html.twig';
                     break;
                 case "showAction":
-                    $path = $attributes['template'].'/show.html.twig';
+                    $suffix = '/show.html.twig';
                     break;
                 case "editAction":
-                    $path = $attributes['template'].'/edit.html.twig';
+                    $suffix = '/edit.html.twig';
                     break;
             }
+            if(isset($suffix)){
+                $path = $attributes['template'].''.$suffix;
+            }
+
 
         }
 
@@ -490,18 +494,22 @@ class RequestParameterHandler
         $route = null;
         switch ($attributes['action']) {
             case "indexAction":
-                $route = $attributes['nameConfig'].'_index';
+                $suffix  = '_index';
                 break;
             case "newAction":
-                $route = $attributes['nameConfig'].'_show';
+                $suffix  = '_show';
                 break;
             case "editAction":
-                $route = $attributes['nameConfig'].'_show';
+                $suffix  = '_show';
                 break;
             case "deleteAction":
-                $route = $attributes['nameConfig'].'_index';
+                $suffix  = '_index';
                 break;
         }
+        if(isset($suffix)){
+            $route = $attributes['nameConfig'].''.$suffix;
+        }
+
 
         return $route;
 
