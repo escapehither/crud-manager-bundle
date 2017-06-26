@@ -437,12 +437,8 @@ class RequestParameterHandler
         } elseif (isset($paramTemplate)) {
             return $paramTemplate;
         } else {
-            $actionList = ['index','new','show','edit'];
-            $suffix = str_replace('Action','',$attributes['action']);
-            if(in_array($suffix,$actionList)){
-                $path = $attributes['template'].'/'.$suffix.'html.twig';
-            }
-            
+            $path = $this->getInfoFromAction($attributes,'path');
+
         }
 
         return $path;
@@ -478,24 +474,8 @@ class RequestParameterHandler
             }
 
         }
-        $route = null;
-        switch ($attributes['action']) {
-            case "indexAction":
-                $suffix  = '_index';
-                break;
-            case "newAction":
-                $suffix  = '_show';
-                break;
-            case "editAction":
-                $suffix  = '_show';
-                break;
-            case "deleteAction":
-                $suffix  = '_index';
-                break;
-        }
-        if(isset($suffix)){
-            $route = $attributes['nameConfig'].''.$suffix;
-        }
+        $route = $this->getInfoFromAction($attributes,'route');
+
 
 
         return $route;
@@ -608,5 +588,26 @@ class RequestParameterHandler
 
         return implode('_', $ret);
     }
+
+    /**
+     * @param array $attributes
+     * @return string
+     */
+    protected function getInfoFromAction(array $attributes,$type) {
+        $actionList = ['index', 'new', 'show', 'edit'];
+        $suffix = str_replace('Action', '', $attributes['action']);
+        $info = NULL;
+        if (in_array($suffix, $actionList)) {
+            if($type == 'path'){
+                $info = $attributes['template'] . '/' . $suffix . 'html.twig';
+            }elseif($type == 'route'){
+                $info = $attributes['nameConfig'].'_'.$suffix;
+            }
+
+        }
+        return $info;
+
+    }
+
 
 }
