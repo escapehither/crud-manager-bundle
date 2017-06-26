@@ -437,25 +437,12 @@ class RequestParameterHandler
         } elseif (isset($paramTemplate)) {
             return $paramTemplate;
         } else {
-            switch ($attributes['action']) {
-                case "indexAction":
-                    $suffix = '/index.html.twig';
-                    break;
-                case "newAction":
-                    $suffix  = '/new.html.twig';
-                    break;
-                case "showAction":
-                    $suffix = '/show.html.twig';
-                    break;
-                case "editAction":
-                    $suffix = '/edit.html.twig';
-                    break;
+            $actionList = ['index','new','show','edit'];
+            $suffix = str_replace('Action','',$attributes['action']);
+            if(in_array($suffix,$actionList)){
+                $path = $attributes['template'].'/'.$suffix.'html.twig';
             }
-            if(isset($suffix)){
-                $path = $attributes['template'].''.$suffix;
-            }
-
-
+            
         }
 
         return $path;
