@@ -64,16 +64,11 @@ class ResourceVoter extends Voter{
         // you know $subject is a resource object, thanks to supports
         /** @var ResourceInterface $resource */
         $resource = $subject;
-
-        switch ($attribute) {
-            case self::VIEW:
-                return $this->canView($resource, $user, $token);
-            case self::EDIT:
-                return $this->canEdit($resource, $user,$token);
-            case self::DELETE:
-                return $this->canEdit($resource, $user,$token);
+        if($attribute == self::VIEW ){
+            return $this->canView($resource, $user, $token);
+        }elseif($attribute == self::EDIT || $attribute == self::DELETE){
+            return $this->canEdit($resource, $user,$token);
         }
-
         throw new \LogicException('This code should not be reached!');
     }
 
