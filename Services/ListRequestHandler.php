@@ -51,18 +51,8 @@ class ListRequestHandler {
         if(NULL != $repositoryMethod){
             return $this->getResourcesFromMethod($repositoryMethod, $repositoryArguments, $repository);
         }
-        /*if (null !== $repositoryMethod = $this->requestParameterHandler->getRepositoryMethod()) {
-
-            $callable = [$repository, $repositoryMethod];
-            $resources = call_user_func_array($callable, $this->requestParameterHandler->getRepositoryArguments());
-
-            return $resources;
-        }*/
-
-        //return $repository->findAll();
 
         // TODO CLEAN UP  AND CHECK IF THE REQUEST NEED PAGINATION.
-
         $qb = $repository->createQueryBuilder('resource');
         $adapter = new DoctrineORMAdapter($qb);
         $pagerFanta = new Pagerfanta($adapter);
@@ -91,18 +81,9 @@ class ListRequestHandler {
 
             return $list;
         }
-
-
-        //TODO
-        /*if (!$requestConfiguration->isPaginated() && !$requestConfiguration->isLimited()) {
-            return $repository->findAll();
-        }*/
-
-        /*if (!$requestConfiguration->isPaginated()) {
-            return $repository->findBy($requestConfiguration->getCriteria(), $requestConfiguration->getSorting(), $requestConfiguration->getLimit());
-        }*/
-
-        //return $repository->createPaginator($requestConfiguration->getCriteria(), $requestConfiguration->getSorting());*/
+        
+        // TODO Check if the pagination is not needed and if is limited
+        // TODO add criteria and sorting.
 
     }
 

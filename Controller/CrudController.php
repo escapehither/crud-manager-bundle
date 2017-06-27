@@ -554,7 +554,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
             $flashMessageManager->addFlash(
                 ResourceCreateEvent::POST_DELETE_RESOURCE
             );
-            
+
 
         }
         $response = new Response(NULL, 204);
