@@ -45,18 +45,18 @@ class SingleResourceRequestHandler {
         $repositoryMethod = $this->requestParameterHandler->getRepositoryMethod();
         if (NULL != $repositoryMethod  && NULL != $repositoryArguments) {
             $callable = [$repository, $repositoryMethod];
-            $resource = call_user_func_array($callable, $repositoryArguments);
+            return call_user_func_array($callable, $repositoryArguments);
 
-            return $resource;
+
         }
         elseif (NULL != $repositoryMethod  && NULL == $repositoryArguments) {
             $callable = [$repository, $repositoryMethod];
-            $resource = call_user_func($callable,$parameter);
-            return $resource;
-        }
-        $resource = $repository->find($parameter);
+            return call_user_func($callable,$parameter);
 
-        return $resource;
+        }
+        return $repository->find($parameter);
+
+
 
 
 
