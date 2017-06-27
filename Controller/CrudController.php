@@ -536,7 +536,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
                 $resourceName,
                 $LoadPageEvent
             );
-            //if ($form->isSubmitted() && $form->isValid()) {
+            //TODO isSubmitted and isValid
             $event = new ResourceCreateEvent($resource);
             $dispatcher->dispatch(
                 ResourceCreateEvent::PRE_DELETE_RESOURCE,
@@ -554,9 +554,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
             $flashMessageManager->addFlash(
                 ResourceCreateEvent::POST_DELETE_RESOURCE
             );
-
-
-            //}
+            
 
         }
         $response = new Response(NULL, 204);
