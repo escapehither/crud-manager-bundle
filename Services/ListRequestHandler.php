@@ -48,18 +48,9 @@ class ListRequestHandler {
         $repository = $this->em->getRepository($this->requestParameterHandler->getRepositoryClass());
         $repositoryArguments = $this->requestParameterHandler->getRepositoryArguments();
         $repositoryMethod = $this->requestParameterHandler->getRepositoryMethod();
-        if (NULL != $repositoryMethod  && NULL != $repositoryArguments) {
-            $callable = [$repository, $repositoryMethod];
-            $resources = call_user_func_array($callable, $repositoryArguments);
-
-            return $resources;
+        if(NULL != $repositoryMethod){
+            return $this->getResourcesFromMethod($repositoryMethod, $repositoryArguments, $repository);
         }
-        elseif (NULL != $repositoryMethod  && NULL == $repositoryArguments) {
-            $callable = [$repository, $repositoryMethod];
-            $resources = call_user_func($callable);
-            return $resources;
-        }
-
         /*if (null !== $repositoryMethod = $this->requestParameterHandler->getRepositoryMethod()) {
 
             $callable = [$repository, $repositoryMethod];
@@ -69,32 +60,32 @@ class ListRequestHandler {
         }*/
 
         //return $repository->findAll();
-        //dump($repository->findAll());
+
         // TODO CLEAN UP  AND CHECK IF THE REQUEST NEED PAGINATION.
 
         $qb = $repository->createQueryBuilder('resource');
         $adapter = new DoctrineORMAdapter($qb);
-        $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage(5);
+        $pagerFanta = new Pagerfanta($adapter);
+        $pagerFanta->setMaxPerPage(5);
         $page = 1;
         if(!empty($this->request->query->get('page'))){
             $page = $this->request->query->get('page');
         }
-        $pagerfanta->setCurrentPage($page);
+        $pagerFanta->setCurrentPage($page);
 
-        $result = $pagerfanta->getCurrentPageResults();
+        $result = $pagerFanta->getCurrentPageResults();
         if($format=='html'){
-            return $pagerfanta;
+            return $pagerFanta;
         }
         else{
             $list['data'] = $result->getArrayCopy();
             $list['pagination'] =[
-              'total'=>$pagerfanta->count(),
-              'count'=>$pagerfanta->getCurrentPageResults()->count(),
-              'current_page'=>$pagerfanta->getCurrentPage(),
-              'per_page'=>$pagerfanta->getMaxPerPage(),
-              'total_pages'=>$pagerfanta->getNbPages(),
-               'links'=>$this->getLinks($pagerfanta),
+              'total'=>$pagerFanta->count(),
+              'count'=>$pagerFanta->getCurrentPageResults()->count(),
+              'current_page'=>$pagerFanta->getCurrentPage(),
+              'per_page'=>$pagerFanta->getMaxPerPage(),
+              'total_pages'=>$pagerFanta->getNbPages(),
+               'links'=>$this->getLinks($pagerFanta),
 
             ];
 
@@ -103,7 +94,6 @@ class ListRequestHandler {
 
 
         //TODO
-
         /*if (!$requestConfiguration->isPaginated() && !$requestConfiguration->isLimited()) {
             return $repository->findAll();
         }*/
@@ -115,8 +105,29 @@ class ListRequestHandler {
         //return $repository->createPaginator($requestConfiguration->getCriteria(), $requestConfiguration->getSorting());*/
 
     }
+
+    /**
+     * @param $repositoryMethod
+     * @param $repositoryArguments
+     * @param $repository
+     * @return mixed
+     */
+    protected function getResourcesFromMethod($repositoryMethod, $repositoryArguments, $repository) {
+
+        if ($repositoryArguments != NULL) {
+            $callable = [$repository, $repositoryMethod];
+            return call_user_func_array($callable, $repositoryArguments);
+        }
+        elseif (  $repositoryArguments == NULL ) {
+            $callable = [$repository, $repositoryMethod];
+            return call_user_func($callable);
+
+        }
+       return [];
+    }
+
     // TODO cleaning
-    private function getLinks($pagerfanta){
+    private function getLinks(Pagerfanta $pagerFanta){
 
         $route = $this->request->attributes->get('_route');
         // make sure we read the route parameters from the passed option array
@@ -129,15 +140,15 @@ class ListRequestHandler {
             ));
         };
 
-        $this->addLink('self', $createLinkUrl($pagerfanta->getCurrentPage()));
+        $this->addLink('self', $createLinkUrl($pagerFanta->getCurrentPage()));
         $this->addLink('first', $createLinkUrl(1));
-        $this->addLink('last', $createLinkUrl($pagerfanta->getNbPages()));
+        $this->addLink('last', $createLinkUrl($pagerFanta->getNbPages()));
 
-        if ($pagerfanta->hasNextPage()) {
-            $this->addLink('next', $createLinkUrl($pagerfanta->getNextPage()));
+        if ($pagerFanta->hasNextPage()) {
+            $this->addLink('next', $createLinkUrl($pagerFanta->getNextPage()));
         }
-        if ($pagerfanta->hasPreviousPage()) {
-            $this->addLink('prev', $createLinkUrl($pagerfanta->getPreviousPage()));
+        if ($pagerFanta->hasPreviousPage()) {
+            $this->addLink('prev', $createLinkUrl($pagerFanta->getPreviousPage()));
         }
         return $this->_links;
 
