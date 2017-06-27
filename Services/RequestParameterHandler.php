@@ -310,27 +310,6 @@ class RequestParameterHandler extends RequestHandlerUtils
 
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRouteParameter()
-    {
-        return $this->request->attributes->get('_route_params');
-
-    }
-
-
-    /**
-     * @return string
-     */
-
-    public function getResourceClass()
-    {
-        $attributes = $this->getAttributes();
-        $resourceClass = $attributes['rootClass'].'\Entity\\'.$attributes['resource'];
-
-        return $resourceClass;
-    }
 
 
 

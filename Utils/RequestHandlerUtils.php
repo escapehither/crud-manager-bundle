@@ -286,9 +286,22 @@ class RequestHandlerUtils {
             return $paramDeleteRoute;
         }
         return FALSE;
-        
+
 
     }
+
+    /**
+     * @return string
+     */
+
+    public function getResourceClass()
+    {
+        $attributes = $this->getAttributes();
+        $resourceClass = $attributes['rootClass'].'\Entity\\'.$attributes['resource'];
+
+        return $resourceClass;
+    }
+
 
 
 }
