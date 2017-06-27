@@ -10,8 +10,7 @@
 
 namespace EscapeHither\CrudManagerBundle\Services;
 
-use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CrudEventDispatcher {
     /**
