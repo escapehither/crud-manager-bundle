@@ -43,29 +43,14 @@ class EscapeHitherCrudManagerExtension extends Extension
             // Else throw new \InvalidArgumentException('not found');
             $class = $value;
             $definition = new Definition($class);
-            //$definition->addArgument(new Reference('doctrine'));
             // add a specific tag
             $definition->addTag('resource');
             $serviceId = 'resource.' . $name.'.'.$key;
-            //var_dump($key);
-            if ($key == "controller") {
-            }
-            elseif ($key == "entity") {
-                //call on a static method.
-                //$definition->setFactory(array($class, 'create'));
+            if ($key == "entity") {
                 $container->register($serviceId, $class);
-                //TODO: CHECK if the factory is set.
                 if(array_key_exists('factory',$resource)){
                     $definition->setFactory(array(new Reference('resource.' . $name.'.factory'), 'create'));
                 }
-
-            }
-            elseif ($key == "form") {
-            }
-            elseif ($key == "repository") {
-                //$definition->addArgument(new Reference('doctrine.orm.entity_manager'));
-                //$definition->
-                //$container->register($serviceId, $class);
             }
             elseif ($key == "factory") {
                 $definition->addArgument(new Reference('doctrine.orm.entity_manager'));
