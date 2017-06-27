@@ -55,27 +55,24 @@ class NewResourceCreationHandler implements ContainerAwareInterface {
 
         $parameter = $container->getParameter($this->requestParameterHandler->getResourceConfigName());
         if(isset($parameter['factory'])){
-            //$factory = new $parameter['factory']($this->em);
             $factory = $container->get($this->requestParameterHandler->getFactoryServiceName());
             $factoryArguments = $this->requestParameterHandler->getfactoryArguments();
             $factoryMethod = $this->requestParameterHandler->getFactoryMethod();
             if (NULL != $factoryMethod  && NULL != $factoryArguments) {
                 $callable = [$factory, $factoryMethod];
                 $resource = call_user_func_array($callable, $factoryArguments);
-
-                return $resource;
             }
             elseif (NULL != $factoryMethod  && NULL == $factoryArguments) {
                 $callable = [$factory, $factoryMethod];
                 $resource = call_user_func($callable);
-                return $resource;
             }
             else{
                 $factoryService = $container->get($this->requestParameterHandler->getFactoryServiceName());
-                $resource =  $factoryService->create();
-                return $resource;
+                $resource  =  $factoryService->create();
+
 
             }
+            return $resource;
         }
         else{
             $resource = ResourceFactory::Create($parameter['entity']);

@@ -81,7 +81,7 @@ class ListRequestHandler {
 
             return $list;
         }
-        
+
         // TODO Check if the pagination is not needed and if is limited
         // TODO add criteria and sorting.
 
