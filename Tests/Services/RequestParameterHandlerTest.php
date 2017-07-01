@@ -28,18 +28,46 @@ class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
             "_controller" => "OpenMarketPlace\ProductManagerBundle\Controller\ProductController::indexAction",
         ];
         $requestParameterHandler = $this->buildRequest($attributes);
-        $requestParameterHandler->build();
         $this->assertEquals('indexAction', $requestParameterHandler->getActionName());
         $this->assertNotEmpty($requestParameterHandler->getAttributes());
     }
-    
+    public function testgetActionName(){
+        $action_list = [
+            'indexAction',
+            'apiIndexAction',
+            'editAction',
+            'apiEditAction',
+            'showAction',
+            'apiShowAction',
+            'newAction',
+            'apiNewAction',
+            'deleteAction',
+            'apiDeleteAction',
+
+        ];
+        foreach($action_list as $key=>$value){
+            $attributes = [
+                "_controller" => "OpenMarketPlace\ProductManagerBundle\Controller\ProductController::".$value,
+            ];
+            $requestParameterHandler = $this->buildRequest($attributes);
+            $this->assertEquals($value, $requestParameterHandler->getActionName());
+
+        }
+
+    }
+    public function testgetRouteName() {
+
+    }
+
     protected function buildRequest($attributes){
         $request = new Request();
         $requestStack = new RequestStack();
         $container = $this->getMockBuilder(ContainerInterface::class)->getMock();
         $request->initialize([],[],$attributes);
         $requestStack->push($request);
-        return new RequestParameterHandler($requestStack,$container);
+        $requestParameterHandler= new RequestParameterHandler($requestStack,$container);
+        $requestParameterHandler->build();
+        return $requestParameterHandler;
     }
 
 }
