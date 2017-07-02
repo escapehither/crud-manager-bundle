@@ -237,7 +237,7 @@ class RequestParameterHandler extends RequestHandlerUtils
 
         return $this->factoryServiceName;
     }
-    
+
 
     public function getRepositoryMethod()
     {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="EscapeHitherCRUDBUNDLE test suite" tests="8" assertions="14" failures="0" errors="0" time="0.066004">
+    <testsuite name="EscapeHither\CrudManagerBundle\Tests\EscapeHitherCrudManagerBundleTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/EscapeHitherCrudManagerBundleTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.012145">
+      <testcase name="testBuild" class="EscapeHither\CrudManagerBundle\Tests\EscapeHitherCrudManagerBundleTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/EscapeHitherCrudManagerBundleTest.php" line="16" assertions="1" time="0.012145"/>
+    </testsuite>
+    <testsuite name="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" tests="7" assertions="13" failures="0" errors="0" time="0.053859">
+      <testcase name="testBuild" class="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" line="25" assertions="2" time="0.017208"/>
+      <testcase name="testGetActionName" class="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" line="33" assertions="10" time="0.027673"/>
+      <testcase name="testGetRouteName" class="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" line="57" assertions="1" time="0.004286"/>
+      <testcase name="testGetResourceClass" class="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" line="66" assertions="0" time="0.001241"/>
+      <testcase name="testGenerateDeleteRoute" class="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" line="69" assertions="0" time="0.001169"/>
+      <testcase name="testGetFormat" class="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" line="72" assertions="0" time="0.001099"/>
+      <testcase name="testGetRedirectionRoute" class="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest" file="/home/shorinmaru/Projet/CrudBundle/Tests/Services/RequestParameterHandlerTest.php" line="78" assertions="0" time="0.001183"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
