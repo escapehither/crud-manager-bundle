@@ -7,9 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace EscapeHither\CrudManagerBundle\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -34,6 +32,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
     const FORM_FACTORY ='escapehither.crud_form_factory_handler';
     const REQUEST_PARAMETER_HANDLER = 'escapehither.crud_request_parameter_handler';
     const SINGLE_RESOURCE_HANDLER ='escapehither.crud_single_resource_request_handler';
+    const NEW_RESOURCE_HANDLER = 'escapehither.crud_new_resource_creation_handler';
     /**
      *  Lists all the Resources entity.
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -74,7 +73,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
         $dispatcher = $this->get(self::EVENT_DISPATCHER);
         $formFactoryHandler = $this->get(self::FORM_FACTORY);
         $newResourceCreationHandler = $this->get(
-            'escapehither.crud_new_resource_creation_handler'
+            self::NEW_RESOURCE_HANDLER
         );
         $flashMessageManager = $this->get(self::FLASH_MANAGER);
         $newResource = $newResourceCreationHandler->process($this->container);
@@ -340,7 +339,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
         $dispatcher = $this->get(self::EVENT_DISPATCHER);
         $formFactoryHandler = $this->get(self::FORM_FACTORY);
         $newResourceCreationHandler = $this->get(
-            'escapehither.crud_new_resource_creation_handler'
+            self::NEW_RESOURCE_HANDLER
         );
         $flashMessageManager = $this->get(self::FLASH_MANAGER);
         $newResource = $newResourceCreationHandler->process($this->container);
@@ -417,25 +416,6 @@ class CrudController extends Controller implements ContainerAwareInterface {
                 'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND
             );
         }
-
-    }
-
-    /**
-     * Api Lists all the Resources entity.
-     *
-     */
-    public function apiIndexAction() {
-        // TODO ADD Check if the user have authorisation before proceeding from the request.
-        $listRequestHandler = $this->get('escapehither.crud_list_request_handler');
-        $resources = $listRequestHandler->process();
-        $serializer = $this->getSerializer();
-        $data = ['data' => $resources];
-
-        $jsonContent = $serializer->serialize($data, 'json');
-        $response = new Response($jsonContent, 200);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
 
     }
 
