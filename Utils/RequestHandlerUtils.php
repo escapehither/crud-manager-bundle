@@ -10,6 +10,7 @@
  */
 namespace EscapeHither\CrudManagerBundle\Utils;
 class RequestHandlerUtils {
+    const ARGUMENTS = 'arguments';
     protected $request;
     /**
      * @return null|Request
@@ -164,16 +165,16 @@ class RequestHandlerUtils {
      */
     public function getRepositoryConfig() {
         $repositoryConfig = $this->request->attributes->get('repository');
-        if (isset($repositoryConfig['arguments'])) {
-            foreach ($repositoryConfig['arguments'] as $key => $value) {
-                $repositoryConfig['arguments'][$key] = $this->request->query->get(
+        if (isset($repositoryConfig[self::ARGUMENTS])) {
+            foreach ($repositoryConfig[self::ARGUMENTS] as $key => $value) {
+                $repositoryConfig[self::ARGUMENTS][$key] = $this->request->query->get(
                     $value
                 );
             }
 
         }
         else {
-            $repositoryConfig['arguments'] = NULL;
+            $repositoryConfig[self::ARGUMENTS] = NULL;
         }
         if (!isset($repositoryConfig['method'])) {
             $repositoryConfig['method'] = NULL;
@@ -190,9 +191,9 @@ class RequestHandlerUtils {
      */
     public function getFactoryConfig() {
         $factoryConfig = $this->request->attributes->get('factory');
-        if (isset($factoryConfig['arguments'])) {
-            foreach ($factoryConfig['arguments'] as $key => $value) {
-                $factoryConfig['arguments'][$key] = $this->request->attributes->get(
+        if (isset($factoryConfig[self::ARGUMENTS])) {
+            foreach ($factoryConfig[self::ARGUMENTS] as $key => $value) {
+                $factoryConfig[self::ARGUMENTS][$key] = $this->request->attributes->get(
                     $value
                 );
             }
