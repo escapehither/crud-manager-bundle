@@ -44,7 +44,7 @@ class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
             'apiDeleteAction',
 
         ];
-        foreach($action_list as $key=>$value){
+        foreach($action_list as $value){
             $attributes = [
                 "_controller" => "OpenMarketPlace\ProductManagerBundle\Controller\ProductController::".$value,
             ];
