@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<phpunit xmlns="http://schema.phpunit.de/coverage/1.0">
+  <file name="Factory.php">
+    <totals>
+      <lines total="30" comments="16" code="14" executable="2" executed="0" percent="0.00%"/>
+      <methods count="1" tested="0" percent="0.00%"/>
+      <functions count="0" tested="0" percent=""/>
+      <classes count="1" tested="0" percent="0.00%"/>
+      <traits count="0" tested="0" percent=""/>
+    </totals>
+    <class name="Factory" start="18" executable="2" executed="0" crap="2">
+      <package full="EscapeHither" name="EscapeHither" sub="" category=""/>
+      <namespace name="EscapeHither\CrudManagerBundle\Controller"/>
+      <method name="Create" signature="Create($class_name)" start="26" end="29" crap="2" executable="2" executed="0" coverage="0"/>
+    </class>
+  </file>
+</phpunit>

@@ -28,7 +28,7 @@
         <log type="coverage-html" target="report/report" lowUpperBound="35"
              highLowerBound="70"/>
         <log type="coverage-clover" target="report/coverage.xml"/>
-        <log type="coverage-xml" target="report/coverage.xml"/>
+        <log type="coverage-xml" target="report/coverage"/>
         <log type="junit" target="report/logfile.xml" logIncompleteSkipped="false"/>
         <log type="testdox-html" target="report/testdox.html"/>
         <log type="testdox-text" target="report/testdox.txt"/>

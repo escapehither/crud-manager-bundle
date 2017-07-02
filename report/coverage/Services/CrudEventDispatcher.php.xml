@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<phpunit xmlns="http://schema.phpunit.de/coverage/1.0">
+  <file name="CrudEventDispatcher.php">
+    <totals>
+      <lines total="34" comments="11" code="23" executable="8" executed="0" percent="0.00%"/>
+      <methods count="2" tested="0" percent="0.00%"/>
+      <functions count="0" tested="0" percent=""/>
+      <classes count="1" tested="0" percent="0.00%"/>
+      <traits count="0" tested="0" percent=""/>
+    </totals>
+    <class name="CrudEventDispatcher" start="15" executable="8" executed="0" crap="6">
+      <package full="" name="" sub="" category=""/>
+      <namespace name="EscapeHither\CrudManagerBundle\Services"/>
+      <method name="__construct" signature="__construct(RequestParameterHandler $requestParameterHandler,EventDispatcherInterface $dispatcher)" start="21" end="28" crap="2" executable="5" executed="0" coverage="0"/>
+      <method name="dispatch" signature="dispatch($eventName,$resourceName,$event)" start="30" end="34" crap="2" executable="3" executed="0" coverage="0"/>
+    </class>
+  </file>
+</phpunit>

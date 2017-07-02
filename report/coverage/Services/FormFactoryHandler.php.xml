@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<phpunit xmlns="http://schema.phpunit.de/coverage/1.0">
+  <file name="FormFactoryHandler.php">
+    <totals>
+      <lines total="70" comments="31" code="39" executable="18" executed="0" percent="0.00%"/>
+      <methods count="3" tested="0" percent="0.00%"/>
+      <functions count="0" tested="0" percent=""/>
+      <classes count="1" tested="0" percent="0.00%"/>
+      <traits count="0" tested="0" percent=""/>
+    </totals>
+    <class name="FormFactoryHandler" start="17" executable="18" executed="0" crap="20">
+      <package full="" name="" sub="" category=""/>
+      <namespace name="EscapeHither\CrudManagerBundle\Services"/>
+      <method name="__construct" signature="__construct(RequestParameterHandler $requestParameterHandler, EntityManager $em, FormFactory $formFactory)" start="32" end="39" crap="2" executable="6" executed="0" coverage="0"/>
+      <method name="createForm" signature="createForm(Resource $newResource, Container $container)" start="46" end="56" crap="6" executable="9" executed="0" coverage="0"/>
+      <method name="createFormFactory" signature="createFormFactory($type, $data = null, array $options = array())" start="66" end="69" crap="2" executable="3" executed="0" coverage="0"/>
+    </class>
+  </file>
+</phpunit>

@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<phpunit xmlns="http://schema.phpunit.de/coverage/1.0">
+  <file name="RequestHandlerUtils.php">
+    <totals>
+      <lines total="313" comments="76" code="237" executable="108" executed="82" percent="75.93%"/>
+      <methods count="16" tested="5" percent="31.25%"/>
+      <functions count="0" tested="0" percent=""/>
+      <classes count="1" tested="0" percent="0.00%"/>
+      <traits count="0" tested="0" percent=""/>
+    </totals>
+    <class name="RequestHandlerUtils" start="12" executable="108" executed="82" crap="66.61">
+      <package full="" name="" sub="" category=""/>
+      <namespace name="EscapeHither\CrudManagerBundle\Utils"/>
+      <method name="getRequest" signature="getRequest()" start="17" end="20" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="from_camel_case" signature="from_camel_case($input)" start="29" end="43" crap="3.07" executable="10" executed="8" coverage="80"/>
+      <method name="getRootBundle" signature="getRootBundle($paramController)" start="49" end="56" crap="2" executable="4" executed="4" coverage="100"/>
+      <method name="getRootClass" signature="getRootClass($paramController)" start="62" end="69" crap="2" executable="4" executed="4" coverage="100"/>
+      <method name="generateResourceViewName" signature="generateResourceViewName($attributes)" start="77" end="87" crap="2" executable="4" executed="4" coverage="100"/>
+      <method name="getInfoFromAction" signature="getInfoFromAction(array $attributes, $type)" start="93" end="108" crap="4.18" executable="9" executed="7" coverage="77.777777777778"/>
+      <method name="getAttributes" signature="getAttributes()" start="113" end="160" crap="4.03" executable="31" executed="27" coverage="87.096774193548"/>
+      <method name="getRepositoryConfig" signature="getRepositoryConfig()" start="165" end="186" crap="4.59" executable="9" executed="6" coverage="66.666666666667"/>
+      <method name="getFactoryConfig" signature="getFactoryConfig()" start="191" end="203" crap="4.12" executable="6" executed="3" coverage="50"/>
+      <method name="getFormConfig" signature="getFormConfig()" start="209" end="213" crap="1" executable="1" executed="1" coverage="100"/>
+      <method name="getSecurityConfig" signature="getSecurityConfig()" start="219" end="222" crap="1" executable="1" executed="1" coverage="100"/>
+      <method name="generateThemePath" signature="generateThemePath(array $attributes)" start="230" end="250" crap="4.59" executable="9" executed="6" coverage="66.666666666667"/>
+      <method name="generateReDirectionRoute" signature="generateReDirectionRoute(array $attributes)" start="252" end="275" crap="7.99" executable="11" executed="8" coverage="72.727272727273"/>
+      <method name="getRouteParameter" signature="getRouteParameter()" start="280" end="283" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="generateDeleteRoute" signature="generateDeleteRoute()" start="289" end="298" crap="2.06" executable="4" executed="3" coverage="75"/>
+      <method name="getResourceClass" signature="getResourceClass()" start="304" end="310" crap="2" executable="3" executed="0" coverage="0"/>
+    </class>
+    <coverage>
+      <line nr="30">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="31">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="33">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="35">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="36">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="37">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="39">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="42">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="50">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="51">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="52">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="55">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="63">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="64">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="65">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="67">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="79">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="80">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="83">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+      </line>
+      <line nr="86">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="94">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="95">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="96">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="97">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="98">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="99">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="106">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="114">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="115">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="116">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="117">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="118">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="119">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="120">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="121">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="122">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="123">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="129">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="130">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="131">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="132">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="135">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="138">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="140">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="142">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="143">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="145">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="146">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="151">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="152">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="153">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="154">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="155">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="159">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="166">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="167">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="176">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="178">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="179">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="183">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="192">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="193">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="202">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="210">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="220">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="232">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="233">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="234">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="235">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="244">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="248">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="254">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="255">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="264">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="265">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="266">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="268">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+      </line>
+      <line nr="269">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+      </line>
+      <line nr="273">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="291">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="292">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+      <line nr="295">
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testBuild"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetActionName"/>
+        <covered by="EscapeHither\CrudManagerBundle\Tests\Services\RequestParameterHandlerTest::testGetRouteName"/>
+      </line>
+    </coverage>
+  </file>
+</phpunit>

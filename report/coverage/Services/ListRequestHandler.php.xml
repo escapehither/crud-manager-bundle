@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<phpunit xmlns="http://schema.phpunit.de/coverage/1.0">
+  <file name="ListRequestHandler.php">
+    <totals>
+      <lines total="142" comments="30" code="112" executable="72" executed="0" percent="0.00%"/>
+      <methods count="6" tested="0" percent="0.00%"/>
+      <functions count="0" tested="0" percent=""/>
+      <classes count="1" tested="0" percent="0.00%"/>
+      <traits count="0" tested="0" percent=""/>
+    </totals>
+    <class name="ListRequestHandler" start="16" executable="72" executed="0" crap="182">
+      <package full="" name="" sub="" category=""/>
+      <namespace name="EscapeHither\CrudManagerBundle\Services"/>
+      <method name="__construct" signature="__construct(RequestParameterHandler $requestParameterHandler, EntityManager $em)" start="32" end="42" crap="2" executable="7" executed="0" coverage="0"/>
+      <method name="process" signature="process()" start="46" end="88" crap="20" executable="33" executed="0" coverage="0"/>
+      <method name="getResourcesFromMethod" signature="getResourcesFromMethod($repositoryMethod, $repositoryArguments, $repository)" start="96" end="108" crap="12" executable="10" executed="0" coverage="0"/>
+      <method name="getLinks" signature="getLinks(Pagerfanta $pagerFanta)" start="111" end="136" crap="12" executable="2" executed="0" coverage="0"/>
+      <method name="anonymous function" signature="anonymous function($targetPage) use ($route, $defaultRouteParams)" start="116" end="122" crap="2" executable="6" executed="0" coverage="0"/>
+      <method name="addLink" signature="addLink($ref, $url)" start="137" end="140" crap="2" executable="3" executed="0" coverage="0"/>
+    </class>
+  </file>
+</phpunit>

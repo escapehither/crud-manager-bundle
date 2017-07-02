@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1498989094">
-  <project timestamp="1498989094">
+<coverage generated="1498990005">
+  <project timestamp="1498990005">
     <package name="EscapeHither\CrudManagerBundle\Api">
       <file name="/home/shorinmaru/Projet/CrudBundle/Api/ApiProblem.php">
         <class name="ApiProblem" namespace="EscapeHither\CrudManagerBundle\Api">
