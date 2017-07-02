@@ -13,7 +13,6 @@ namespace EscapeHither\CrudManagerBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use EscapeHither\CrudManagerBundle\Event\ResourceCreateEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Serializer;
@@ -28,6 +27,8 @@ use EscapeHither\CrudManagerBundle\Services\RequestParameterHandler;
 use Symfony\Component\Form\Exception\LogicException;
 
 class CrudController extends Controller implements ContainerAwareInterface {
+
+    const NOT_FOUND = ' does not exist';
     /**
      *  Lists all the Resources entity.
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -141,7 +142,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
         }
         else {
             // add a message if the does't not exist.
-            throw $this->createNotFoundException('The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' does not exist');
+            throw $this->createNotFoundException('The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND);
         }
 
     }
@@ -187,10 +188,10 @@ class CrudController extends Controller implements ContainerAwareInterface {
             // do something if the resource does'not exist.
             $this->addFlash(
                 'error',
-                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' does not exist'
+                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND
             );
             throw $this->createNotFoundException(
-                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' does not exist'
+                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND
             );
         }
 
@@ -261,7 +262,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
         }
         else {
             throw $this->createNotFoundException(
-                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' does not exist'
+                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND
             );
         }
 
@@ -408,7 +409,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
         else {
             // add a message if the does't not exist.
             throw $this->createNotFoundException(
-                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' does not exist'
+                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND
             );
         }
 
@@ -503,10 +504,10 @@ class CrudController extends Controller implements ContainerAwareInterface {
             // do something if the resource does'not exist.
             $this->addFlash(
                 'error',
-                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' does not exist'
+                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND
             );
             throw $this->createNotFoundException(
-                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' does not exist'
+                'The ' . $requestParameterHandler->getResourceName() . ' ' . $id . ' '.self::NOT_FOUND
             );
         }
 
