@@ -19,7 +19,6 @@ class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->request = $this->getMockBuilder('Symfony\Component\HttpFoundation\RequestStack')->getMock();
 
 
     }
@@ -31,7 +30,7 @@ class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('indexAction', $requestParameterHandler->getActionName());
         $this->assertNotEmpty($requestParameterHandler->getAttributes());
     }
-    public function testgetActionName(){
+    public function testGetActionName(){
         $action_list = [
             'indexAction',
             'apiIndexAction',
@@ -55,7 +54,28 @@ class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
         }
 
     }
-    public function testgetRouteName() {
+    public function testGetRouteName() {
+        $attributes = [
+            "_controller" => "OpenMarketPlace\ProductManagerBundle\Controller\ProductController::indexAction",
+            '_route'=>'product_index'
+        ];
+        $requestParameterHandler = $this->buildRequest($attributes);
+        $this->assertEquals('product_index', $requestParameterHandler->getRouteName());
+
+    }
+    public function testGetResourceClass(){
+
+    }
+    public function testGenerateDeleteRoute() {
+
+    }
+    public function testGetFormat() {
+
+    }
+    /**
+     * @return string
+     */
+    public function testGetRedirectionRoute() {
 
     }
 
