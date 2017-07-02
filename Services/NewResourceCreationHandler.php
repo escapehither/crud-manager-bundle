@@ -75,8 +75,8 @@ class NewResourceCreationHandler implements ContainerAwareInterface {
             return $resource;
         }
         else{
-            $resource = ResourceFactory::Create($parameter['entity']);
-            return $resource;
+            return ResourceFactory::Create($parameter['entity']);
+
 
         }
 

@@ -11,6 +11,13 @@
 namespace EscapeHither\CrudManagerBundle\Utils;
 class RequestHandlerUtils {
     protected $request;
+    /**
+     * @return null|Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
 
     /**
      * Transform a string from camel_case to underscore.

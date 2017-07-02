@@ -121,13 +121,7 @@ class RequestParameterHandler extends RequestHandlerUtils
 
     }
 
-    /**
-     * @return null|Request
-     */
-    public function getRequest()
-    {
-        return $this->request;
-    }
+
 
     /**
      * @return mixed
@@ -243,9 +237,7 @@ class RequestParameterHandler extends RequestHandlerUtils
 
         return $this->factoryServiceName;
     }
-
-
-
+    
 
     public function getRepositoryMethod()
     {
@@ -285,13 +277,12 @@ class RequestParameterHandler extends RequestHandlerUtils
     public function getRedirectionParameter(ResourceInterface $resource)
     {
         $paramRedirection = $this->request->attributes->get('redirect');
-        if (isset($paramRedirection['parameters']) && !empty($paramRedirection['parameters'])) {
+        if (!empty($paramRedirection['parameters'])) {
             foreach ($paramRedirection['parameters'] as $key => $name) {
                 $paramRedirection['parameters'][$key] = $this->request->attributes->get(
                   $name
                 );
             }
-
             return $paramRedirection['parameters'];
         }
 

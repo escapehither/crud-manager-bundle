@@ -660,7 +660,7 @@ class CrudController extends Controller implements ContainerAwareInterface {
             );
         }
         else {
-            if (isset($securityConfig['check']) && $securityConfig['check']) {
+            if (!empty($securityConfig['check'])) {
                 $requireRole = $securityConfig['check'];
                 $this->denyAccessUnlessGranted(
                     $requireRole,

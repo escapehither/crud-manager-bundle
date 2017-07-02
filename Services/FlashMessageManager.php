@@ -14,6 +14,7 @@ namespace EscapeHither\CrudManagerBundle\Services;
 class FlashMessageManager
 {
     protected $requestParameterHandler;
+    const SUCCESS = 'success';
     function __construct(RequestParameterHandler $requestParameterHandler)
     {
         $this->requestParameterHandler = $requestParameterHandler;
@@ -27,13 +28,13 @@ class FlashMessageManager
         $request = $this->requestParameterHandler->getRequest();
         $resourceName=$this->requestParameterHandler->getResourceName();
         if($eventName =='resource.post.create'){
-            $request->getSession()->getFlashBag()->add('success','The '.$resourceName.' has been successfully created');
+            $request->getSession()->getFlashBag()->add(self::SUCCESS,'The '.$resourceName.' has been successfully created');
         }
         elseif($eventName =='resource.post.update'){
-            $request->getSession()->getFlashBag()->add('success','Your changes has been successfully saved!');
+            $request->getSession()->getFlashBag()->add(self::SUCCESS,'Your changes has been successfully saved!');
         }
         elseif($eventName =='resource.post.delete'){
-            $request->getSession()->getFlashBag()->add('success','The '.$resourceName.' has been successfully deleted');
+            $request->getSession()->getFlashBag()->add(self::SUCCESS,'The '.$resourceName.' has been successfully deleted');
         }
 
 
