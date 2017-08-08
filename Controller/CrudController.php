@@ -27,7 +27,7 @@ use Symfony\Component\Form\Exception\LogicException;
 
 class CrudController extends Controller implements ContainerAwareInterface {
 
-    const NOT_FOUND = ' does not exist';
+    const NOT_FOUND = 'does not exist';
     const EVENT_DISPATCHER = 'escapehither.crud_event_dispatcher';
     const FLASH_MANAGER = 'escapehither.crud_flash_message_manager';
     const FORM_FACTORY = 'escapehither.crud_form_factory_handler';
