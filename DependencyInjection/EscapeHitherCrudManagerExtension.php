@@ -29,7 +29,9 @@ class EscapeHitherCrudManagerExtension extends Extension
 
         if (isset($config['resources'])) {
             $resources = $config['resources'];
+            $container->setParameter('escape_hither_crud_manager_resources', $config['resources']);
             foreach ($resources as $name => $resource) {
+                //TODO THe controller must be we two level
                 $container->setParameter('resource-'.$name, $config['resources'][$name]);
                 $this->addResourceDefinition($container, $name, $resource);
             }

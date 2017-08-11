@@ -97,7 +97,7 @@ class RequestHandlerUtils {
         $info = NULL;
         if (in_array($suffix, $actionList)) {
             if ($type == 'path') {
-                $info = $attributes['template'] . '/' . $suffix . 'html.twig';
+                $info = $attributes['template'] . '/' . $suffix . '.html.twig';
             }
             elseif ($type == 'route') {
                 $info = $attributes['nameConfig'] . '_' . $suffix;
