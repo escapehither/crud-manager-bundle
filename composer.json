@@ -18,7 +18,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "symfony/serializer": "^3.2",
         "white-october/pagerfanta-bundle": "^1.0",
-        "lexik/jwt-authentication-bundle": "^2.4"
+        "lexik/jwt-authentication-bundle": "^2.4",
+        "nelmio/api-doc-bundle": "^2.13"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

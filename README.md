@@ -50,6 +50,7 @@ class AppKernel extends Kernel
              new Knp\Bundle\MenuBundle\KnpMenuBundle(),
              new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
              new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
         );
 
         // ...
@@ -64,10 +65,18 @@ class AppKernel extends Kernel
     ```yaml
     imports:
        - { resource: "@EscapeHitherCrudManagerBundle/Resources/config/services.yml" }
+       - { resource: "@EscapeHitherCrudManagerBundle/Resources/config/config.yml" }
     ```
 
 
 
+2. Import routing files in `app/config/routing.yml`:
+
+    ```yaml
+    escape_hither_crud_manager:
+        resource: "@EscapeHitherCrudManagerBundle/Resources/config/routing.yml"
+        prefix:   /
+    ```
 1. Install it:
 
     ```bash
