@@ -51,3 +51,9 @@ services:
         class: EscapeHither\CrudManagerBundle\Listener\ResponseListener
         tags:
            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    escapehither.api_routing_loader:
+                 class: EscapeHither\CrudManagerBundle\Routing\ExtraLoader
+                 arguments: ["%escape_hither_crud_manager_resources%"]
+                 tags:
+                     - { name: routing.loader }
