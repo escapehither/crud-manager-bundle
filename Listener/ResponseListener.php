@@ -14,6 +14,12 @@ class ResponseListener {
     public function onKernelResponse(FilterResponseEvent $event)
     {
         $event->getResponse()->headers->set('x-frame-options', 'deny');
+        // only reply to /api URLs
+        /*if (strpos($event->getRequest()->getPathInfo(), '/api') !== 0) {
+            return;
+        }
+        $event->getResponse()->headers->set('Access-Control-Allow-Origin', '*');
+        $event->getResponse()->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');*/
     }
 
 }
