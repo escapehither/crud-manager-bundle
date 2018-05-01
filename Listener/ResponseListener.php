@@ -11,6 +11,7 @@
 namespace EscapeHither\CrudManagerBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Response Lister handle cors problême
@@ -31,6 +32,14 @@ class ResponseListener
         if (strpos($event->getRequest()->getPathInfo(), '/api') !== 0) {
             return;
         }
+        $request = $event->getRequest();
+        $method  = $request->getRealMethod();
+        if ('OPTIONS' === $method) {
+            $response = new JsonResponse();
+            $response->headers->set('Access-Control-Allow-Headers', 'X-Requested-With,Access-Control-Allow-Headers, Authorization');
+            $event->setResponse($response);
+        }
+        // TODO ADD a filter for system URL for cors
         $event->getResponse()->headers->set('Access-Control-Allow-Origin', '*');
         $event->getResponse()->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
     }
