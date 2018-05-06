@@ -14,21 +14,35 @@ use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-class ExtraLoader extends Loader {
-    private $loaded = FALSE;
+/**
+ * Routing api default loader
+ *
+ *@inheritDoc
+ */
+class ExtraLoader extends Loader
+{
+    private $loaded = false;
     private $resourcesConfig;
 
-    public function __construct($resourcesConfig) {
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($resourcesConfig)
+    {
         $this->resourcesConfig = $resourcesConfig;
     }
 
-    public function load($resource, $type = NULL) {
-        if (TRUE === $this->loaded) {
+    /**
+     * {@inheritDoc}
+     */
+    public function load($resource, $type = null)
+    {
+        if (true === $this->loaded) {
             throw new \RuntimeException('Do not add the "extra" loader twice');
         }
 
         $routes = new RouteCollection();
-        $action_list = [
+        $actionList = [
             'index' => 'index',
             'update' => 'apiEdit',
             'show' => 'apiShow',
@@ -37,40 +51,39 @@ class ExtraLoader extends Loader {
 
         ];
         foreach ($this->resourcesConfig as $key => $value) {
-
-            $name = $key . 's';
-            $data_config = explode('\\', $value['controller']);
-            $controllerName = preg_replace('/Controller/', '', $data_config[count($data_config) - 1]);
-            $redirectName = 'api.' . $key . '_index';
-            foreach ($action_list as $key_action => $action) {
-                $routeName = 'api.' . $key . '_' . $key_action;
-                switch ($key_action) {
+            $name = $key.'s';
+            $dataConfig = explode('\\', $value['controller']);
+            $controllerName = preg_replace('/Controller/', '', $dataConfig[count($dataConfig) - 1]);
+            $redirectName = 'api.'.$key.'_index';
+            foreach ($actionList as $actionKey => $action) {
+                $routeName = 'api.'.$key.'_'.$actionKey;
+                switch ($actionKey) {
                     case 'index':
-                        $path = 'api/' . $name;
-                        $method = ['GET'];
+                        $path = 'api/'.$name;
+                        $method = ['GET', 'OPTIONS'];
                         break;
                     case 'update':
                         // prepare a new route
-                        $path = 'api/' . $name . '/{id}';
+                        $path = 'api/'.$name.'/{id}';
                         $method = ['PUT', 'PATCH'];
                         break;
                     case 'show':
-                        $path = 'api/' . $name . '/{id}';
+                        $path = 'api/'.$name.'/{id}';
                         $method = ['GET'];
                         break;
                     case 'new':
-                        $path = 'api/' . $name;
+                        $path = 'api/'.$name;
                         $method = ['POST'];
                         break;
                     case 'delete':
-                        $path = 'api/' . $name . '/{id}';
+                        $path = 'api/'.$name.'/{id}';
                         $method = ['DELETE'];
                         break;
                 }
-                $controller = $data_config[0] . ':' . $controllerName . ':' . $action;
+                $controller = $dataConfig[0].':'.$controllerName.':'.$action;
                 $defaults = array(
                     '_controller' => $controller,
-                    'redirect'=> $redirectName
+                    'redirect' => $redirectName,
                 );
                 /*$requirements = array(
                 'parameter' => '\d+',
@@ -80,15 +93,18 @@ class ExtraLoader extends Loader {
                 // add the new route to the route collection
                 $routes->add($routeName, $route);
             }
-
-
         }
 
-        $this->loaded = TRUE;
+        $this->loaded = true;
+
         return $routes;
     }
 
-    public function supports($resource, $type = NULL) {
+    /**
+     * {@inheritDoc}
+     */
+    public function supports($resource, $type = null)
+    {
         return 'extra' === $type;
     }
 }
