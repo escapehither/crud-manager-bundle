@@ -1,18 +1,22 @@
 <?php
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 10/05/17
- * Time: 20:10
  */
 
 namespace EscapeHither\CrudManagerBundle\Api;
-/**
- * A wrapper for holding data to be used for a application/problem+json response
- */
+
 use Symfony\Component\HttpFoundation\Response;
+
+/**
+ * The Api problem
+ * A wrapper for holding data to be used for a application/problem+json response
+ *
+ * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ */
 class ApiProblem
 {
     const TYPE_VALIDATION_ERROR = 'validation_error';
@@ -25,17 +29,23 @@ class ApiProblem
     private $type;
     private $title;
     private $extraData = array();
+
+    /**
+     * Api problem constructor
+     *
+     * @param int    $statusCode The status code
+     * @param string $type       The problem type
+     */
     public function __construct($statusCode, $type = null)
     {
-        if ($type === null) {
+        if (null === type) {
             $type = 'about:blank';
             $title = isset(Response::$statusTexts[$statusCode])
               ? Response::$statusTexts[$statusCode]
               : 'Unknown status code :(';
-        }
-        else{
+        } else {
             if (!isset(self::$titles[$type])) {
-            throw new \InvalidArgumentException('No title for type '.$type);
+                throw new \InvalidArgumentException(sprintf('No title for type %s ', $type));
             }
             $title = self::$titles[$type];
         }
@@ -43,24 +53,37 @@ class ApiProblem
         $this->type = $type;
         $this->title = $title;
     }
+
+    /**
+     * Add information to The error Array
+     *
+     * @param string $name  The name of the extra data
+     * @param mixed  $value The value of the extra data
+     */
     public function set($name, $value)
     {
         $this->extraData[$name] = $value;
     }
+
+    /**
+     * A problem to extra data
+     *
+     * @return array
+     */
     public function toArray()
     {
         return array_merge(
-          $this->extraData,
-          array(
-            'status' => $this->statusCode,
-            'type' => $this->type,
-            'title' => $this->title,
-          )
+            $this->extraData,
+            array(
+              'status' => $this->statusCode,
+              'type' => $this->type,
+              'title' => $this->title,
+            )
         );
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getType()
     {
@@ -68,7 +91,7 @@ class ApiProblem
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -90,6 +113,4 @@ class ApiProblem
     {
         return $this->extraData;
     }
-
-
 }
