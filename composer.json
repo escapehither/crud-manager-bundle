@@ -1,6 +1,6 @@
 {
     "name": "escapehither/crud-manager-bundle",
-    "description": " a symfony bundle that manage crud",
+    "description": " A symfony bundle CRUD AND API MANAGER",
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.*",
