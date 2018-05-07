@@ -31,8 +31,8 @@ class EscapeHitherCrudManagerExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
 
         if (isset($config['resources'])) {
             $resources = $config['resources'];
@@ -66,13 +66,13 @@ class EscapeHitherCrudManagerExtension extends Extension
             $definition->addTag('resource');
             $serviceId = sprintf('resource.%s.%s', $name, $key);
 
-            if ("entity" === $key) {
+            if ('entity' === $key) {
                 $container->register($serviceId, $class);
 
                 if (array_key_exists('factory', $resource)) {
                     $definition->setFactory(array(new Reference('resource.'.$name.'.factory'), 'create'));
                 }
-            } elseif ("factory" === $key) {
+            } elseif ('factory' === $key) {
                 $definition->addArgument(new Reference('doctrine.orm.entity_manager'));
                 $container->register($serviceId, $class);
             }
