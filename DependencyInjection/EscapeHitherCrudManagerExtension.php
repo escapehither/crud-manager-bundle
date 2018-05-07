@@ -1,4 +1,11 @@
 <?php
+/**
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace EscapeHither\CrudManagerBundle\DependencyInjection;
 
@@ -37,30 +44,40 @@ class EscapeHitherCrudManagerExtension extends Extension
             }
         }
     }
+
+
+    /**
+     * add Ressource definition
+     *
+     * @param ContainerBuilder $container The container
+     * @param string           $name      The ressource name
+     * @param array            $resource  The ressource
+     */
     private function addResourceDefinition(ContainerBuilder $container, $name, array $resource)
     {
         // Adding resource as service.
-        foreach ($resource as $key => $value) {
-            // You need to add a if to see if the file exist the process.
-            // Else throw new \InvalidArgumentException('not found');
-            $class = $value;
+        foreach ($resource as $key => $class) {
+            if (!class_exists($class)) {
+                throw new \InvalidArgumentException(sprintf('class %s was not found', $class));
+            }
+
             $definition = new Definition($class);
             // add a specific tag
             $definition->addTag('resource');
-            $serviceId = 'resource.' . $name.'.'.$key;
-            if ($key == "entity") {
+            $serviceId = sprintf('resource.%s.%s', $name, $key);
+
+            if ("entity" === $key) {
                 $container->register($serviceId, $class);
-                if(array_key_exists('factory',$resource)){
-                    $definition->setFactory(array(new Reference('resource.' . $name.'.factory'), 'create'));
+
+                if (array_key_exists('factory', $resource)) {
+                    $definition->setFactory(array(new Reference('resource.'.$name.'.factory'), 'create'));
                 }
-            }
-            elseif ($key == "factory") {
+            } elseif ("factory" === $key) {
                 $definition->addArgument(new Reference('doctrine.orm.entity_manager'));
                 $container->register($serviceId, $class);
             }
+
             $container->setDefinition($serviceId, $definition);
-
         }
-
     }
 }
