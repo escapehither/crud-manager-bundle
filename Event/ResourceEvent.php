@@ -1,23 +1,25 @@
 <?php
-
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 27/12/16
- * Time: 16:03
  */
+
 namespace EscapeHither\CrudManagerBundle\Event;
+
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Response;
 use EscapeHither\CrudManagerBundle\Entity\Resource;
+
 /**
  * The Resource.create event is dispatched each time a new resource is created
  * in the system.
+ *
+ *@author Georden Gaël LOUZAYADIO <georden@escapehither.com>
  */
-
-class ResourceCreateEvent extends  Event
+class ResourceEvent extends Event
 {
     const LOAD_CREATE_RESOURCE = 'resource.load.create';
     const PRE_CREATE_RESOURCE = 'resource.pre.create';
@@ -31,19 +33,33 @@ class ResourceCreateEvent extends  Event
 
     protected $resource;
 
+    /**
+     * The resource event creator Constructor
+     *
+     * @param Resource $resource
+     */
     public function __construct(Resource $resource)
     {
         $this->resource = $resource;
     }
 
+    /**
+     * Get the envent Object
+     *
+     * @return Resource $resource
+     */
     public function getResource()
     {
         return $this->resource;
     }
+    /**
+     *  Set the event response
+     *
+     * @param Response $response
+     */
     public function setResponse(Response $response)
     {
         $this->response = $response;
         $this->stopPropagation();
     }
-
 }

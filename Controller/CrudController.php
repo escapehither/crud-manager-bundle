@@ -11,7 +11,7 @@ namespace EscapeHither\CrudManagerBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use EscapeHither\CrudManagerBundle\Event\ResourceCreateEvent;
+use EscapeHither\CrudManagerBundle\Event\ResourceEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -40,7 +40,7 @@ class CrudController extends Controller implements ContainerAwareInterface
     const REQUEST_PARAMETER_HANDLER = 'escapehither.crud_request_parameter_handler';
     const SINGLE_RESOURCE_HANDLER = 'escapehither.crud_single_resource_request_handler';
     const NEW_RESOURCE_HANDLER = 'escapehither.crud_new_resource_creation_handler';
-    
+
     /**
      *  Lists all the Resources entity.
      *
@@ -86,32 +86,31 @@ class CrudController extends Controller implements ContainerAwareInterface
         $dispatcher = $this->get(self::EVENT_DISPATCHER);
         $newResource = $this->get(self::NEW_RESOURCE_HANDLER)->process($this->container);
         $dispatcher->dispatch(
-            ResourceCreateEvent::LOAD_CREATE_RESOURCE,
+            ResourceEvent::LOAD_CREATE_RESOURCE,
             $resourceName,
-            new ResourceCreateEvent($newResource)
+            new ResourceEvent($newResource)
         );
         $form = $this->get(self::FORM_FACTORY)->createForm($newResource, $this->container);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // create the the resource create event and dispatch it
-            $event = new ResourceCreateEvent($newResource);
+            $event = new ResourceEvent($newResource);
             $dispatcher->dispatch(
-                ResourceCreateEvent::PRE_CREATE_RESOURCE,
+                ResourceEvent::PRE_CREATE_RESOURCE,
                 $resourceName,
                 $event
             );
             $em = $this->getDoctrine()->getManager();
             $em->persist($newResource);
             $em->flush();
-            // creating the ACL
             $dispatcher->dispatch(
-                ResourceCreateEvent::POST_CREATE_RESOURCE,
+                ResourceEvent::POST_CREATE_RESOURCE,
                 $resourceName,
                 $event
             );
             $this->get(self::FLASH_MANAGER)->addFlash(
-                ResourceCreateEvent::POST_CREATE_RESOURCE
+                ResourceEvent::POST_CREATE_RESOURCE
             );
 
             return $this->redirectToRoute(
@@ -182,15 +181,15 @@ class CrudController extends Controller implements ContainerAwareInterface
 
          // check for "edit" access: calls all voters
          $this->denyAccessUnlessGranted('edit', $resource);
-         $dispatcher->dispatch(ResourceCreateEvent::LOAD_UPDATE_RESOURCE, $resourceName, new ResourceCreateEvent($resource));
+         $dispatcher->dispatch(ResourceEvent::LOAD_UPDATE_RESOURCE, $resourceName, new ResourceEvent($resource));
          // TODO handle Read-Only Field
          $editForm = $this->get(self::FORM_FACTORY)->createForm($resource, $this->container);
          $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $event = new ResourceCreateEvent($resource);
+            $event = new ResourceEvent($resource);
             $dispatcher->dispatch(
-                ResourceCreateEvent::PRE_UPDATE_RESOURCE,
+                ResourceEvent::PRE_UPDATE_RESOURCE,
                 $resourceName,
                 $event
             );
@@ -198,12 +197,12 @@ class CrudController extends Controller implements ContainerAwareInterface
             $em->persist($resource);
             $em->flush();
             $dispatcher->dispatch(
-                ResourceCreateEvent::POST_UPDATE_RESOURCE,
+                ResourceEvent::POST_UPDATE_RESOURCE,
                 $resourceName,
                 $event
             );
             $this->get(self::FLASH_MANAGER)->addFlash(
-                ResourceCreateEvent::POST_UPDATE_RESOURCE
+                ResourceEvent::POST_UPDATE_RESOURCE
             );
 
             return $this->redirectToRoute(
@@ -246,21 +245,21 @@ class CrudController extends Controller implements ContainerAwareInterface
         // check for "delete" access: calls all voters
         $this->denyAccessUnlessGranted('delete', $resource);
         $dispatcher->dispatch(
-            ResourceCreateEvent::LOAD_DELETE_RESOURCE,
+            ResourceEvent::LOAD_DELETE_RESOURCE,
             $resourceName,
-            new ResourceCreateEvent($resource)
+            new ResourceEvent($resource)
         );
         $form = $this->createDeleteForm($requestParameterHandler, true);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $event = new ResourceCreateEvent($resource);
-            $dispatcher->dispatch(ResourceCreateEvent::PRE_DELETE_RESOURCE, $resourceName, $event);
+            $event = new ResourceEvent($resource);
+            $dispatcher->dispatch(ResourceEvent::PRE_DELETE_RESOURCE, $resourceName, $event);
             $em = $this->getDoctrine()->getManager();
             $em->remove($resource);
             $em->flush();
-            $dispatcher->dispatch(ResourceCreateEvent::POST_DELETE_RESOURCE, $resourceName, $event);
-            $this->get(self::FLASH_MANAGER)->addFlash(ResourceCreateEvent::POST_DELETE_RESOURCE);
+            $dispatcher->dispatch(ResourceEvent::POST_DELETE_RESOURCE, $resourceName, $event);
+            $this->get(self::FLASH_MANAGER)->addFlash(ResourceEvent::POST_DELETE_RESOURCE);
         }
 
         return $this->redirectToRoute(
@@ -283,7 +282,7 @@ class CrudController extends Controller implements ContainerAwareInterface
         $this->denyAccessUnlessGranted(sprintf('ROLE_%$_CREATE', strtoupper($resourceName)), null, 'Unable to access this page!');
         $dispatcher = $this->get(self::EVENT_DISPATCHER);
         $newResource =  $this->get(self::NEW_RESOURCE_HANDLER)->process($this->container);
-        $dispatcher->dispatch(ResourceCreateEvent::LOAD_CREATE_RESOURCE, $resourceName, new ResourceCreateEvent($newResource));
+        $dispatcher->dispatch(ResourceEvent::LOAD_CREATE_RESOURCE, $resourceName, new ResourceEvent($newResource));
         $form = $this->get(self::FORM_FACTORY)->createForm($newResource, $this->container);
         $data = json_decode($request->getContent(), true);
 
@@ -297,9 +296,9 @@ class CrudController extends Controller implements ContainerAwareInterface
         }
 
         // create the the resource create event and dispatch it
-        $event = new ResourceCreateEvent($newResource);
+        $event = new ResourceEvent($newResource);
         $dispatcher->dispatch(
-            ResourceCreateEvent::PRE_CREATE_RESOURCE,
+            ResourceEvent::PRE_CREATE_RESOURCE,
             $resourceName,
             $event
         );
@@ -308,7 +307,7 @@ class CrudController extends Controller implements ContainerAwareInterface
         $em->flush();
         // creating the ACL
         $dispatcher->dispatch(
-            ResourceCreateEvent::POST_CREATE_RESOURCE,
+            ResourceEvent::POST_CREATE_RESOURCE,
             $resourceName,
             $event
         );
@@ -369,8 +368,8 @@ class CrudController extends Controller implements ContainerAwareInterface
         }
          // check for "edit" access: calls all voters
         $this->denyAccessUnlessGranted('edit', $resource);
-        $loadPageEvent = new ResourceCreateEvent($resource);
-        $dispatcher->dispatch(ResourceCreateEvent::LOAD_UPDATE_RESOURCE, $resourceName, $loadPageEvent);
+        $loadPageEvent = new ResourceEvent($resource);
+        $dispatcher->dispatch(ResourceEvent::LOAD_UPDATE_RESOURCE, $resourceName, $loadPageEvent);
         // TODO handle Read-Only Fields
         $editForm = $this->get(self::FORM_FACTORY)->createForm($resource, $this->container);
         $data = $request->getContent();
@@ -383,13 +382,13 @@ class CrudController extends Controller implements ContainerAwareInterface
             $this->throwApiProblemValidationException($editForm);
         }
 
-        $event = new ResourceCreateEvent($resource);
-        $dispatcher->dispatch(ResourceCreateEvent::PRE_UPDATE_RESOURCE, $resourceName, $event);
+        $event = new ResourceEvent($resource);
+        $dispatcher->dispatch(ResourceEvent::PRE_UPDATE_RESOURCE, $resourceName, $event);
         $em = $this->getManager();
         $em->persist($resource);
         $em->flush();
         $dispatcher->dispatch(
-            ResourceCreateEvent::POST_UPDATE_RESOURCE,
+            ResourceEvent::POST_UPDATE_RESOURCE,
             $resourceName,
             $event
         );
@@ -418,14 +417,14 @@ class CrudController extends Controller implements ContainerAwareInterface
             // check for "delete" access: calls all voters
             $this->denyAccessUnlessGranted('delete', $resource);
             $dispatcher->dispatch(
-                ResourceCreateEvent::LOAD_DELETE_RESOURCE,
+                ResourceEvent::LOAD_DELETE_RESOURCE,
                 $resourceName,
-                new ResourceCreateEvent($resource)
+                new ResourceEvent($resource)
             );
             //TODO isSubmitted and isValid
-            $event = new ResourceCreateEvent($resource);
+            $event = new ResourceEvent($resource);
             $dispatcher->dispatch(
-                ResourceCreateEvent::PRE_DELETE_RESOURCE,
+                ResourceEvent::PRE_DELETE_RESOURCE,
                 $resourceName,
                 $event
             );
@@ -433,7 +432,7 @@ class CrudController extends Controller implements ContainerAwareInterface
             $em->remove($resource);
             $em->flush();
             $dispatcher->dispatch(
-                ResourceCreateEvent::POST_DELETE_RESOURCE,
+                ResourceEvent::POST_DELETE_RESOURCE,
                 $resourceName,
                 $event
             );
