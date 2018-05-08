@@ -58,7 +58,7 @@ class EscapeHitherCrudManagerExtension extends Extension
         // Adding resource as service.
         foreach ($resource as $key => $class) {
             if (!class_exists($class)) {
-                throw new \InvalidArgumentException(sprintf('class %s was not found', $class));
+                throw new \InvalidArgumentException(sprintf(' The %s class %s defined for the resource %s was not found ', $key, $class, $name));
             }
 
             $definition = new Definition($class);
