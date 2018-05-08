@@ -1,28 +1,39 @@
 <?php
-
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 28/01/17
- * Time: 17:37
  */
+
 namespace EscapeHither\CrudManagerBundle\Tests\Services;
+
 use EscapeHither\CrudManagerBundle\Services\RequestParameterHandler;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Request parameter Handler Test
+ *
+ * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ */
 class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * Test Setup
+     */
     public function setUp()
     {
-
-
     }
-    public function testBuild(){
+
+    /**
+     * Test Build
+     */
+    public function testBuild()
+    {
         $attributes = [
             "_controller" => "OpenMarketPlace\ProductManagerBundle\Controller\ProductController::indexAction",
         ];
@@ -30,8 +41,13 @@ class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('indexAction', $requestParameterHandler->getActionName());
         $this->assertNotEmpty($requestParameterHandler->getAttributes());
     }
-    public function testGetActionName(){
-        $action_list = [
+
+    /**
+     * Test Get action name
+     */
+    public function testGetActionName()
+    {
+        $actionList = [
             'indexAction',
             'apiIndexAction',
             'editAction',
@@ -44,50 +60,76 @@ class RequestParameterHandlerTest extends \PHPUnit_Framework_TestCase
             'apiDeleteAction',
 
         ];
-        foreach($action_list as $value){
+
+        foreach ($actionList as $value) {
             $attributes = [
                 "_controller" => "OpenMarketPlace\ProductManagerBundle\Controller\ProductController::".$value,
             ];
             $requestParameterHandler = $this->buildRequest($attributes);
             $this->assertEquals($value, $requestParameterHandler->getActionName());
-
         }
-
     }
-    public function testGetRouteName() {
+
+    /**
+     * Test Get route Name
+     */
+    public function testGetRouteName()
+    {
         $attributes = [
             "_controller" => "OpenMarketPlace\ProductManagerBundle\Controller\ProductController::indexAction",
-            '_route'=>'product_index'
+            '_route' => 'product_index',
         ];
         $requestParameterHandler = $this->buildRequest($attributes);
         $this->assertEquals('product_index', $requestParameterHandler->getRouteName());
-
     }
-    public function testGetResourceClass(){
 
+    /**
+     * Test Get resource Class
+     */
+    public function testGetResourceClass()
+    {
+        // TODO
     }
-    public function testGenerateDeleteRoute() {
 
+    /**
+     * Test Generate Delete Route
+     */
+    public function testGenerateDeleteRoute()
+    {
+        //TODO
     }
-    public function testGetFormat() {
 
+    /**
+     * Test Get Format
+     *
+     */
+    public function testGetFormat()
+    {
+        //TODO
     }
     /**
      * @return string
      */
-    public function testGetRedirectionRoute() {
-
+    public function testGetRedirectionRoute()
+    {
     }
 
-    protected function buildRequest($attributes){
-        $request = new Request();
+    /**
+     * Build the request parameter Handler
+     *
+     * @param array $attributes
+     * @return RequestParameterHandler
+     */
+    protected function buildRequest($attributes)
+    {
         $requestStack = new RequestStack();
         $container = $this->getMockBuilder(ContainerInterface::class)->getMock();
-        $request->initialize([],[],$attributes);
+        $request = new Request();
+        $request->initialize([], [], $attributes);
         $requestStack->push($request);
-        $requestParameterHandler= new RequestParameterHandler($requestStack,$container);
+        $requestParameterHandler = new RequestParameterHandler($requestStack, $container);
         $requestParameterHandler->build();
+
         return $requestParameterHandler;
     }
-
 }

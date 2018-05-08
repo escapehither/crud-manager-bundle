@@ -1,17 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: shorinmaru
- * Date: 30/07/16
- * Time: 23:03
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace EscapeHither\CrudManagerBundle\Controller;
+
 use EscapeHither\CrudManagerBundle\Controller\Factory;
 
 /**
- * Class ResourceFormFactory create form factory
- * @package EscapeHither\CrudManagerBundle\Controller
+ * The Resource Form Factory
+ *
+ * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
  */
 class ResourceFormFactory extends Factory
 {

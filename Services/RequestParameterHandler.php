@@ -1,11 +1,10 @@
 <?php
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 20/11/16
- * Time: 14:16
  */
 
 
@@ -17,7 +16,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\HttpFoundation\Request;
 use EscapeHither\CrudManagerBundle\Utils\RequestHandlerUtils;
 
-
+/**
+ * Request parameter Handler
+ *
+ * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ */
 class RequestParameterHandler extends RequestHandlerUtils
 {
     protected $name;
@@ -44,22 +47,31 @@ class RequestParameterHandler extends RequestHandlerUtils
     protected $routeName;
     protected $actionName;
 
-    function __construct(RequestStack $requestStack, Container $container)
+    /**
+     * The request parameter Handler constructor
+     *
+     * @param RequestStack $requestStack The request Stack
+     * @param Container    $container    The container
+     */
+    public function __construct(RequestStack $requestStack, Container $container)
     {
         $this->requestStack = $requestStack;
         $this->container = $container;
-
     }
-    public function build(){
+    /**
+     * Build all asset
+     */
+    public function build()
+    {
         $this->request = $this->requestStack->getCurrentRequest();
-        if($this->request){
+        if ($this->request) {
             $this->format = $this->request->getRequestFormat();
         }
 
         $attributes = $this->getAttributes();
         if (!empty($attributes)) {
             $this->resourceName = $attributes['name'];
-            $action_list = [
+            $actionList = [
               'indexAction',
               'apiIndexAction',
               'editAction',
@@ -73,28 +85,27 @@ class RequestParameterHandler extends RequestHandlerUtils
 
             ];
 
-            if ($this->resourceName == "redirect") {
+            if ('redirect'  === $this->resourceName) {
                 return;
             }
-            if (in_array($attributes['action'], $action_list)) {
+
+            if (in_array($attributes['action'], $actionList)) {
                 // use when call resource configuration parameter.
                 $this->resourceConfigName = 'resource-'.$attributes['nameConfig'];
 
                 if ($this->container->hasParameter($this->resourceConfigName)) {
-
                     $parameters = $this->container->getParameter(
-                      $this->resourceConfigName
+                        $this->resourceConfigName
                     );
                     $this->repositoryClass = $parameters['entity'];
                 }
-
             }
 
             // use when call resource configuration parameter.
             $this->resourceServiceName = 'resource.'.$attributes['nameConfig'];
             // The name use for generating the view.
             $this->resourceViewName = RequestHandlerUtils::generateResourceViewName(
-              $attributes
+                $attributes
             );
             // The where is template for the view.
             $this->themePath = $this->generateThemePath($attributes);
@@ -102,7 +113,7 @@ class RequestParameterHandler extends RequestHandlerUtils
             $this->bundleName = $attributes['bundle'];
             // The redirection route.
             $this->redirectionRoute = $this->generateReDirectionRoute(
-              $attributes
+                $attributes
             );
 
             // The index root.
@@ -116,24 +127,23 @@ class RequestParameterHandler extends RequestHandlerUtils
             $this->securityConfig = $attributes['security'];
             $this->actionName = $attributes['action'];
             $this->routeName = $attributes['_route'];
-
         }
-
     }
-
 
 
     /**
      * @return mixed
      */
-    public function getActionName() {
+    public function getActionName()
+    {
         return $this->actionName;
     }
 
     /**
      * @return mixed
      */
-    public function getRouteName() {
+    public function getRouteName()
+    {
         return $this->routeName;
     }
 
@@ -158,7 +168,8 @@ class RequestParameterHandler extends RequestHandlerUtils
     /**
      * @return mixed
      */
-    public function getFormat() {
+    public function getFormat()
+    {
         return $this->format;
     }
 
@@ -238,40 +249,56 @@ class RequestParameterHandler extends RequestHandlerUtils
         return $this->factoryServiceName;
     }
 
-
+    /**
+     * Get the repository method
+     *
+     * @return string
+     */
     public function getRepositoryMethod()
     {
         return $this->repositoryConfig['method'];
-
     }
 
+    /**
+     * Get the repository arguments
+     *
+     * @return array
+     */
     public function getRepositoryArguments()
     {
 
         return $this->repositoryConfig['arguments'];
-
-    }
-
-    public function getFactoryMethod()
-    {
-        return $this->factoryConfig['method'];
-
-    }
-
-    public function getFactoryArguments()
-    {
-
-        if (isset($this->factoryConfig['arguments'])) {
-            return $this->factoryConfig['arguments'];
-        } else {
-            return null;
-        }
-
-
     }
 
     /**
-     * @param $resource
+     * Get the factory method
+     *
+     * @return string
+     */
+    public function getFactoryMethod()
+    {
+        return $this->factoryConfig['method'];
+    }
+
+    /**
+     * Get the factory argumets
+     *
+     * @return array
+     */
+    public function getFactoryArguments()
+    {
+        if (isset($this->factoryConfig['arguments'])) {
+            return $this->factoryConfig['arguments'];
+        }
+
+        return null;
+    }
+
+    /**
+     *Get the redirection parameters
+     *
+     * @param ResourceInterface $resource
+     *
      * @return array
      */
     public function getRedirectionParameter(ResourceInterface $resource)
@@ -280,30 +307,27 @@ class RequestParameterHandler extends RequestHandlerUtils
         if (!empty($paramRedirection['parameters'])) {
             foreach ($paramRedirection['parameters'] as $key => $name) {
                 $paramRedirection['parameters'][$key] = $this->request->attributes->get(
-                  $name
+                    $name
                 );
             }
+
             return $paramRedirection['parameters'];
         }
 
-        elseif ($resource) {
+        if ($resource) {
             $route = $this->container->get('router')->getRouteCollection()->get(
-              $this->redirectionRoute
+                $this->redirectionRoute
             );
             $pathVariables = $route->compile()->getPathVariables();
             $routeParameters = [];
+
             if (!empty($pathVariables)) {
-                 $routeParameters= ['id' => $resource->getId()];
+                 $routeParameters = ['id' => $resource->getId()];
             }
+
             return $routeParameters;
         }
-        return NULL;
 
+        return null;
     }
-
-
-
-
-
-
 }

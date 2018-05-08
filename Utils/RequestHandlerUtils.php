@@ -1,15 +1,21 @@
 <?php
-
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 27/06/17
- * Time: 21:54
  */
+
 namespace EscapeHither\CrudManagerBundle\Utils;
-class RequestHandlerUtils {
+
+/**
+ * Request Handler Utils
+ *
+ * @author <georden@escapehither.com>
+ */
+class RequestHandlerUtils
+{
     const ARGUMENTS = 'arguments';
     protected $request;
     /**
@@ -22,12 +28,14 @@ class RequestHandlerUtils {
 
     /**
      * Transform a string from camel_case to underscore.
-     * @param $input
-     * @return string
-     *  A string lowercase with underscore pattern.
+     *
+     * @param string $input
+     *
+     * @return string A string lowercase with underscore pattern
+     *
      */
-
-    public static function from_camel_case($input) {
+    public static function fromCamelCase($input)
+    {
         preg_match_all(
             '!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!',
             $input,
@@ -44,11 +52,16 @@ class RequestHandlerUtils {
     }
 
     /**
-     * @param $paramController
+     * Get the root bundle
+     *
+     * @param array $paramController
+     *
      * @return string
      */
-    public static function getRootBundle($paramController) {
+    public static function getRootBundle($paramController)
+    {
         $rootBundle = '';
+
         for ($i = 0; $i <= count($paramController) - 3; $i++) {
             $rootBundle .= $paramController[$i];
         }
@@ -57,30 +70,36 @@ class RequestHandlerUtils {
     }
 
     /**
-     * @param $paramController
+     * Get the root class
+     *
+     * @param array $paramController
+     *
      * @return string
      */
-    public static function getRootClass($paramController) {
+    public static function getRootClass($paramController)
+    {
         $rootClass = '';
-        for ($i = 0; $i <= count($paramController) - 3; $i++) {
-            $rootClass .= $paramController[$i] . '\\';
-        }
-        return substr($rootClass, 0, -1);
 
+        for ($i = 0; $i <= count($paramController) - 3; $i++) {
+            $rootClass .= $paramController[$i].'\\';
+        }
+
+        return substr($rootClass, 0, -1);
     }
 
     /**
      *  Generate the resource name uses for the template.
-     * @param $attributes
-     *   The attributes from the request.
+     *
+     * @param array $attributes The request attributes.
+     *
      * @return string
      */
-    public static function generateResourceViewName($attributes) {
+    public static function generateResourceViewName($attributes)
+    {
 
-        if ($attributes['action'] == "indexAction") {
-            $name = $attributes['name'] . 's';
-        }
-        else {
+        if ('indexAction' === $attributes['action']) {
+            $name = $attributes['name'].'s';
+        } else {
             $name = $attributes['name'];
         }
 
@@ -88,31 +107,38 @@ class RequestHandlerUtils {
     }
 
     /**
-     * @param array $attributes
+     * Get info from the action
+     *
+     * @param array  $attributes The request attributes.
+     * @param string $type       The info type.
+     *
      * @return string
      */
-    public static function getInfoFromAction(array $attributes, $type) {
+    public static function getInfoFromAction(array $attributes, $type)
+    {
         $actionList = ['index', 'new', 'show', 'edit'];
         $suffix = str_replace('Action', '', $attributes['action']);
-        $info = NULL;
+        $info = null;
+
         if (in_array($suffix, $actionList)) {
-            if ($type == 'path') {
-                $info = $attributes['template'] . '/' . $suffix . '.html.twig';
+            if ('path' === $type) {
+                $info = $attributes['template'].'/'.$suffix.'.html.twig';
+            } elseif ('route' === $type) {
+                $info = $attributes['nameConfig'].'_'.$suffix;
             }
-            elseif ($type == 'route') {
-                $info = $attributes['nameConfig'] . '_' . $suffix;
-            }
-
         }
-        return $info;
 
+        return $info;
     }
 
     /**
+     * Get the attributes
      * @return mixed
      */
-    public function getAttributes() {
+    public function getAttributes()
+    {
         $attributes = [];
+
         if ($this->request) {
             $controllerLink = $this->request->attributes->get('_controller');
             $paramController = explode("\\", $controllerLink);
@@ -120,35 +146,31 @@ class RequestHandlerUtils {
             $controllerActionTab = explode("::", $controllerAction);
             $attributes['rootClass'] = self::getRootClass($paramController);
             $attributes['rootBundle'] = self::getRootBundle($paramController);
+
             if (!empty($paramController)) {
                 $attributes['bundle'] = $paramController[0];
-            }
-            else {
-                $attributes['bundle'] = NULL;
+            } else {
+                $attributes['bundle'] = null;
             }
 
             $controller = $controllerActionTab[0];
-            $pattern = '/Controller/';
-            $replacement = '';
-            $attributes['resource'] = preg_replace(
-                $pattern,
-                $replacement,
-                $controller
-            );
+
+            $attributes['resource'] = preg_replace('/Controller/', '', $controller);
             // The resource name available in template.
             $attributes['name'] = lcfirst($attributes['resource']);
             // The resource name for the template folder.
             $attributes['template'] = strtolower($attributes['resource']);
             // The resource name for getting config parameters.
-            $attributes['nameConfig'] = self::from_camel_case(
+            $attributes['nameConfig'] = self::fromCamelCase(
                 $attributes['resource']
             );
+
             if (!empty($controllerActionTab[1])) {
                 $attributes['action'] = $controllerActionTab[1];
+            } else {
+                $attributes['action'] = null;
             }
-            else {
-                $attributes['action'] = NULL;
-            }
+
             $attributes['_route'] = $this->request->attributes->get('_route');
             $attributes['repository'] = $this->getRepositoryConfig();
             $attributes['factory'] = $this->getFactoryConfig();
@@ -163,63 +185,64 @@ class RequestHandlerUtils {
     /**
      * @return mixed
      */
-    public function getRepositoryConfig() {
+    public function getRepositoryConfig()
+    {
         $repositoryConfig = $this->request->attributes->get('repository');
+
         if (isset($repositoryConfig[self::ARGUMENTS])) {
             foreach ($repositoryConfig[self::ARGUMENTS] as $key => $value) {
                 $repositoryConfig[self::ARGUMENTS][$key] = $this->request->query->get(
                     $value
                 );
             }
+        } else {
+            $repositoryConfig[self::ARGUMENTS] = null;
+        }
 
-        }
-        else {
-            $repositoryConfig[self::ARGUMENTS] = NULL;
-        }
         if (!isset($repositoryConfig['method'])) {
-            $repositoryConfig['method'] = NULL;
-
+            $repositoryConfig['method'] = null;
         }
 
         return $repositoryConfig;
-
-
     }
 
     /**
+     * Get factory config
+     *
      * @return mixed
      */
-    public function getFactoryConfig() {
+    public function getFactoryConfig()
+    {
         $factoryConfig = $this->request->attributes->get('factory');
+
         if (isset($factoryConfig[self::ARGUMENTS])) {
             foreach ($factoryConfig[self::ARGUMENTS] as $key => $value) {
                 $factoryConfig[self::ARGUMENTS][$key] = $this->request->attributes->get(
                     $value
                 );
             }
-
         }
 
         return $factoryConfig;
     }
 
     /**
-     *  Get The form Configuration.
+     * Get The form Configuration.
+     *
      * @return mixed
      */
-    public function getFormConfig() {
+    public function getFormConfig()
+    {
         return $this->request->attributes->get('form');
-
-
     }
 
     /**
      *  Get The security Configuration.
      * @return mixed
      */
-    public function getSecurityConfig() {
+    public function getSecurityConfig()
+    {
         return $this->request->attributes->get('security');
-
     }
 
     /**
@@ -228,88 +251,89 @@ class RequestHandlerUtils {
      *  The request attributes
      * @return null|string
      */
-    public function generateThemePath(array $attributes) {
+    public function generateThemePath(array $attributes)
+    {
         // Check if the template is set in the routing attributes.
         $paramTemplate = $this->request->attributes->get('template');
-        $path = NULL;
-        if (isset($this->request->query) && $this->request->query->get(
-                'template'
-            )
-        ) {
-            $path = $this->request->query->get('template');
-        }
-        elseif (isset($paramTemplate)) {
+
+        if (isset($paramTemplate)) {
             return $paramTemplate;
         }
-        else {
-            $path = self::getInfoFromAction($attributes, 'path');
 
+        $path = self::getInfoFromAction($attributes, 'path');
+
+        if (isset($this->request->query) && $this->request->query->get('template')) {
+            $path = $this->request->query->get('template');
         }
 
         return $path;
-
     }
 
-    public function generateReDirectionRoute(array $attributes) {
+    /**
+     * Get the redirection route
+     *
+     * @param array $attributes
+     *
+     * @return string
+     */
+    public function generateReDirectionRoute(array $attributes)
+    {
 
         $paramRedirectionRoute = $this->request->attributes->get('redirect');
+
         if (isset($paramRedirectionRoute)) {
             if (!empty($paramRedirectionRoute['route'])) {
                 return $paramRedirectionRoute['route'];
             }
-            else {
-                return $paramRedirectionRoute;
-            }
 
-        }
-        $route = NULL;
-        if ($attributes['action'] == 'indexAction' || $attributes['action'] == 'deleteAction') {
-            $route = $attributes['nameConfig'] . '_index';
-        }
-        elseif ($attributes['action'] == 'newAction' || $attributes['action'] == 'editAction') {
-            $route = $attributes['nameConfig'] . '_show';
+            return $paramRedirectionRoute;
         }
 
+        $route = null;
+
+        if ('indexAction' === $attributes['action'] || 'deleteAction' === $attributes['action']) {
+            $route = $attributes['nameConfig'].'_index';
+        } elseif ('newAction' === $attributes['action'] || 'editAction' === $attributes['action']) {
+            $route = $attributes['nameConfig'].'_show';
+        }
 
         return $route;
-
     }
 
     /**
+     * Get route parameter
+     *
      * @return mixed
      */
-    public function getRouteParameter() {
+    public function getRouteParameter()
+    {
         return $this->request->attributes->get('_route_params');
-
     }
 
     /**
-     *  Get the delete route from the routing parameter.
+     * Get the delete route from the routing parameter.
+     *
      * @return string
      */
-    public function generateDeleteRoute() {
+    public function generateDeleteRoute()
+    {
 
         $paramDeleteRoute = $this->request->attributes->get('delete_route');
+
         if (isset($paramDeleteRoute)) {
             return $paramDeleteRoute;
         }
-        return FALSE;
 
-
+        return false;
     }
 
     /**
      * @return string
      */
-
     public function getResourceClass()
     {
         $attributes = $this->getAttributes();
-        $resourceClass = $attributes['rootClass'].'\Entity\\'.$attributes['resource'];
 
-        return $resourceClass;
+        return $attributes['rootClass'].'\Entity\\'.$attributes['resource'];
     }
-
-
-
 }

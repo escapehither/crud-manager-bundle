@@ -1,13 +1,12 @@
 <?php
-
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 24/06/17
- * Time: 13:55
  */
+
 namespace EscapeHither\CrudManagerBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;

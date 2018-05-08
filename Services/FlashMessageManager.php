@@ -1,43 +1,56 @@
 <?php
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 28/01/17
- * Time: 19:35
  */
 
 namespace EscapeHither\CrudManagerBundle\Services;
 
-
+/**
+ * The flash manager
+ * Send flash message
+ *
+ * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ */
 class FlashMessageManager
 {
     protected $requestParameterHandler;
     const SUCCESS = 'success';
-    function __construct(RequestParameterHandler $requestParameterHandler)
+
+    /**
+     * The flash manager constructor
+     *
+     * @param RequestParameterHandler $requestParameterHandler
+     */
+    public function __construct(RequestParameterHandler $requestParameterHandler)
     {
         $this->requestParameterHandler = $requestParameterHandler;
-
-
-
     }
-    public function addFlash($eventName){
+    /**
+     * Add flash according to the event
+     *
+     * @param string $eventName
+     */
+    public function addFlash($eventName)
+    {
 
         $this->requestParameterHandler->build();
         $request = $this->requestParameterHandler->getRequest();
-        $resourceName=$this->requestParameterHandler->getResourceName();
-        if($eventName =='resource.post.create'){
-            $request->getSession()->getFlashBag()->add(self::SUCCESS,'The '.$resourceName.' has been successfully created');
-        }
-        elseif($eventName =='resource.post.update'){
-            $request->getSession()->getFlashBag()->add(self::SUCCESS,'Your changes has been successfully saved!');
-        }
-        elseif($eventName =='resource.post.delete'){
-            $request->getSession()->getFlashBag()->add(self::SUCCESS,'The '.$resourceName.' has been successfully deleted');
-        }
+        $resourceName = $this->requestParameterHandler->getResourceName();
 
-
+        switch ($eventName) {
+            case 'resource.post.create':
+                $request->getSession()->getFlashBag()->add(self::SUCCESS, 'The '.$resourceName.' has been successfully created');
+                break;
+            case 'resource.post.update':
+                $request->getSession()->getFlashBag()->add(self::SUCCESS, 'Your changes has been successfully saved!');
+                break;
+            case 'resource.post.delete':
+                $request->getSession()->getFlashBag()->add(self::SUCCESS, 'The '.$resourceName.' has been successfully deleted');
+                break;
+        }
     }
-
 }

@@ -70,7 +70,6 @@ class CrudController extends Controller implements ContainerAwareInterface
         return $response;
     }
 
- 
     /**
      * Creates a new Resource entity.
      *

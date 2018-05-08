@@ -1,31 +1,33 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: shorinmaru
- * Date: 30/07/16
- * Time: 23:23
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
-
 namespace EscapeHither\CrudManagerBundle\Controller;
-use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
 
+use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
 
 /**
  * Class Factory
- * @package EscapeHither\CrudManagerBundle\Controller
- * This Factory is use to create any Resource
+ * The default Factory used to create any Resource
+ *
+ * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
  */
 class Factory
 {
     /**
-     * @param $class_name
-     *   the required class of your resource
+     *Create a new resource
+     *
+     * @param string $className the required class of your resource
+     *
+     *
      * @return ResourceInterface
      */
-
-    public static function Create($class_name){
-        return new $class_name();
-
+    public static function create($className)
+    {
+        return new $className();
     }
-
 }

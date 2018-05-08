@@ -1,13 +1,13 @@
 <?php
 
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 09/08/17
- * Time: 19:49
  */
+
 namespace EscapeHither\CrudManagerBundle\Routing;
 
 use Symfony\Component\Config\Loader\Loader;
@@ -17,7 +17,7 @@ use Symfony\Component\Routing\RouteCollection;
 /**
  * Routing api default loader
  *
- *@inheritDoc
+ *{@inheritDoc}
  */
 class ExtraLoader extends Loader
 {

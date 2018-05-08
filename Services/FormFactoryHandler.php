@@ -1,20 +1,27 @@
 <?php
 /**
- * This file is part of the Genia package.
- * (c) Georden Gaël LOUZAYADIO
+ * This file is part of the Escape Hither CRUD.
+ * (c) Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * Date: 04/12/16
- * Time: 19:13
  */
 
 namespace EscapeHither\CrudManagerBundle\Services;
+
 use Symfony\Component\Form\FormFactory;
 use Doctrine\ORM\EntityManager;
 use EscapeHither\CrudManagerBundle\Entity\Resource;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\Form\Form;
-class FormFactoryHandler {
+
+/**
+ * The Form factory Handler Handle form creation
+ *
+ * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
+ */
+class FormFactoryHandler
+{
     /**
      * @var RequestParameterHandler
      */
@@ -29,30 +36,39 @@ class FormFactoryHandler {
      */
     protected $formFactory;
 
-    function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em, FormFactory $formFactory)
+    /**
+     * Form factory Handler constructor
+     *
+     * @param RequestParameterHandler $requestParameterHandler The request parameter handler
+     * @param EntityManager           $em                      The Entity manager
+     * @param FormFactory             $formFactory             The form factory
+     */
+    public function __construct(RequestParameterHandler $requestParameterHandler, EntityManager $em, FormFactory $formFactory)
     {
         $this->requestParameterHandler = $requestParameterHandler;
         $this->requestParameterHandler->build();
         $this->em = $em;
         $this->formFactory = $formFactory;
-
     }
 
     /**
-     * @param $newResource
-     * @param $container
+     * Create form
+     *
+     * @param Resource  $newResource
+     * @param Container $container
+     *
      * @return Form
      */
-    public function createForm(Resource $newResource, Container $container){
-        if($this->requestParameterHandler->getFormConfig()){
-            $formConfig=$this->requestParameterHandler->getFormConfig();
-        }
-        else{
+    public function createForm(Resource $newResource, Container $container)
+    {
+        if ($this->requestParameterHandler->getFormConfig()) {
+            $formConfig = $this->requestParameterHandler->getFormConfig();
+        } else {
             $parameter = $container->getParameter($this->requestParameterHandler->getResourceConfigName());
             $formConfig = $parameter['form'];
         }
-        return $this->createFormFactory($formConfig,$newResource);
 
+        return $this->createFormFactory($formConfig, $newResource);
     }
     /**
      * Creates and returns a Form instance from the type of the form.
@@ -67,5 +83,4 @@ class FormFactoryHandler {
     {
         return $this->formFactory->create($type, $data, $options);
     }
-
 }
