@@ -30,11 +30,4 @@ interface ResourceInterface
      * @param UserInterface $author
      */
     public function setAuthor(UserInterface $author);
-
-    /**
-     * Get Resource id
-     *
-     * @return $string
-     */
-    public function getId();
 }
