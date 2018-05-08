@@ -1,6 +1,8 @@
 {
     "name": "escapehither/crud-manager-bundle",
     "description": " A symfony bundle CRUD AND API MANAGER",
+    "keywords": ["crud", "api"],
+    "type": "symfony-bundle",
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.*",
@@ -45,7 +47,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "0.2.x-dev"
         }
     },
     "authors": [
