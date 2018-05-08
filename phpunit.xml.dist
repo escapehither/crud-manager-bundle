@@ -9,7 +9,7 @@
         >
     <testsuites>
         <testsuite name="EscapeHitherCRUDBUNDLE test suite">
-            <directory suffix="Test.php">./Tests</directory>
+            <directory>./Tests</directory>
         </testsuite>
     </testsuites>
 

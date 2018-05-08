@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <ruleset name="Symfony CodingStandard" namespace="vendor/escapestudios/symfony2-coding-standard/">
-<file>./src</file>
+<file>.</file>
  <exclude-pattern>*/Notready/*</exclude-pattern>
+ <exclude-pattern>*/vendor/*</exclude-pattern>
  <rule ref="Symfony2">
         
 </rule>
