@@ -11,7 +11,6 @@ PHPCBF_PROJECT=$(SYMFONY_VENDOR_BIN_DIR)/phpcbf
 cs-vendor-lunch: #install symfony coding standard and lunch
 cs-vendor-lunch: cs-vendor-install-standard cs-vendor
 
-
 #Coding standard
 cs-locale: 
 	phpcs

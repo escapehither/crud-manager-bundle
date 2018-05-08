@@ -62,4 +62,4 @@ test:
   script:
   - make cs-vendor-install-standard  
   - make cs-vendor
-  - make test
+  - make run-test
