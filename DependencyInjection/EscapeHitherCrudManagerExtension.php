@@ -76,7 +76,7 @@ class EscapeHitherCrudManagerExtension extends Extension
                 $definition->addArgument(new Reference('doctrine.orm.entity_manager'));
                 $container->register($serviceId, $class);
             }
-
+            $definition->setPublic(true);
             $container->setDefinition($serviceId, $definition);
         }
     }

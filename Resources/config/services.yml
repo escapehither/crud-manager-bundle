@@ -10,6 +10,8 @@ parameters:
     api_exeption_subscriber.class: EscapeHither\CrudManagerBundle\EventListener\ApiExceptionSubscriber
 
 services:
+    _defaults: { public: true }
+
     escapehither.resource_voter:
             class: "%resource_voter.class%"
             arguments: ["@security.access.decision_manager","@escapehither.crud_request_parameter_handler"]
