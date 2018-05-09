@@ -53,8 +53,7 @@ class CrudController extends Controller implements ContainerAwareInterface
         $requestParameterHandler = $this->getRequestParameterHandler();
         $format = $requestParameterHandler->getFormat();
         $resourceName = $requestParameterHandler->getResourceViewName();
-        $this->securityCheck($requestParameterHandler, $resourceName);
-        // ADD Check if the user have authorisation before proceeding from the request.
+        // TODO ADD Check if the user have authorisation before proceeding from the request.
         $listRequestHandler = $this->get('escapehither.crud_list_request_handler');
         $resources = $listRequestHandler->process();
 
@@ -138,6 +137,8 @@ class CrudController extends Controller implements ContainerAwareInterface
     {
         $requestParameterHandler = $this->getRequestParameterHandler();
         $singleResourceRequestHandler = $this->get(self::SINGLE_RESOURCE_HANDLER);
+        // TODO ADD Check if the user have authorisation before proceeding from the request.
+
         $resource = $singleResourceRequestHandler->process($id);
 
         if (null !== $resource) {
