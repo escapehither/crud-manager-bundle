@@ -35,6 +35,7 @@ class ResponseListener
         $method  = $request->getRealMethod();
         if ('OPTIONS' === $method) {
             $response = new JsonResponse();
+            $response->headers->set('Access-Control-Allow-Origin', '*')
             $response->headers->set('Access-Control-Allow-Headers', 'X-Requested-With,Access-Control-Allow-Headers, Authorization,Content-Type');
             $event->setResponse($response);
         }
