@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use EscapeHither\CrudManagerBundle\Services\RequestParameterHandler;
 use Symfony\Component\Form\Exception\LogicException;
 use EscapeHither\CrudManagerBundle\Entity\ResourceInterface;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 /**
  * The crud controller
@@ -138,7 +139,6 @@ class CrudController extends Controller implements ContainerAwareInterface
         $requestParameterHandler = $this->getRequestParameterHandler();
         $singleResourceRequestHandler = $this->get(self::SINGLE_RESOURCE_HANDLER);
         // TODO ADD Check if the user have authorisation before proceeding from the request.
-
         $resource = $singleResourceRequestHandler->process($id);
 
         if (null !== $resource) {
@@ -457,11 +457,13 @@ class CrudController extends Controller implements ContainerAwareInterface
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizer = new ObjectNormalizer();
+        // TODO ADD CUSTOM Configuration for the date format //RFC3339
+        $datenormalizer = new DateTimeNormalizer(\DateTime::ISO8601);
         // This line help avoid circular reference.
         $normalizer->setCircularReferenceHandler(function ($object) {
             return $object->getId();
         });
-        $normalizers = array($normalizer);
+        $normalizers = array($datenormalizer, $normalizer);
 
         return new Serializer($normalizers, $encoders);
     }
