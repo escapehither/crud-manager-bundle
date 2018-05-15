@@ -50,13 +50,16 @@ class ExtraLoader extends Loader
             'delete' => 'apiDelete',
 
         ];
+
         foreach ($this->resourcesConfig as $key => $value) {
             $name = $key.'s';
             $dataConfig = explode('\\', $value['controller']);
             $controllerName = preg_replace('/Controller/', '', $dataConfig[count($dataConfig) - 1]);
             $redirectName = 'api.'.$key.'_index';
+    
             foreach ($actionList as $actionKey => $action) {
                 $routeName = 'api.'.$key.'_'.$actionKey;
+
                 switch ($actionKey) {
                     case 'index':
                         $path = 'api/'.$name;
@@ -80,7 +83,8 @@ class ExtraLoader extends Loader
                         $method = ['DELETE'];
                         break;
                 }
-                $controller = $dataConfig[0].':'.$controllerName.':'.$action;
+    
+                $controller = sprintf('%s::%sAction',$value['controller'],$action);
                 $defaults = array(
                     '_controller' => $controller,
                     'redirect' => $redirectName,
