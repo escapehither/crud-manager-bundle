@@ -335,7 +335,7 @@ class CrudController extends Controller implements ContainerAwareInterface
 
         if (null === $resource) {
             throw $this->createNotFoundException(
-                sprintf('The /%s %d %s', $requestParameterHandler->getResourceName(), $id, self::NOT_FOUND)
+                sprintf('The %s %d %s', $requestParameterHandler->getResourceName(), $id, self::NOT_FOUND)
             );
         }
 
