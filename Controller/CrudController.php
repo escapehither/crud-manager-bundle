@@ -279,7 +279,7 @@ class CrudController extends Controller implements ContainerAwareInterface
     {
         $requestParameterHandler = $this->getRequestParameterHandler();
         $resourceName = $requestParameterHandler->getResourceViewName();
-        $this->denyAccessUnlessGranted(sprintf('ROLE_%$_CREATE', strtoupper($resourceName)), null, 'Unable to access this page!');
+        $this->denyAccessUnlessGranted(sprintf('ROLE_%s_CREATE', strtoupper($resourceName)), null, 'Unable to access this page!');
         $dispatcher = $this->get(self::EVENT_DISPATCHER);
         $newResource =  $this->get(self::NEW_RESOURCE_HANDLER)->process($this->container);
         $dispatcher->dispatch(ResourceEvent::LOAD_CREATE_RESOURCE, $resourceName, new ResourceEvent($newResource));
