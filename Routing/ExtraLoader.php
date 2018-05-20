@@ -13,6 +13,7 @@ namespace EscapeHither\CrudManagerBundle\Routing;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use Doctrine\Common\Inflector\Inflector;
 
 /**
  * Routing api default loader
@@ -52,7 +53,7 @@ class ExtraLoader extends Loader
         ];
 
         foreach ($this->resourcesConfig as $key => $value) {
-            $name = $key.'s';
+            $name = lcfirst(Inflector::pluralize($key));
             $dataConfig = explode('\\', $value['controller']);
             $controllerName = preg_replace('/Controller/', '', $dataConfig[count($dataConfig) - 1]);
             $redirectName = 'api.'.$key.'_index';
