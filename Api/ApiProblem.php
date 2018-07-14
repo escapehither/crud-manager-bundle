@@ -38,7 +38,7 @@ class ApiProblem
      */
     public function __construct($statusCode, $type = null)
     {
-        if (null === type) {
+        if (null === $type) {
             $type = 'about:blank';
             $title = isset(Response::$statusTexts[$statusCode])
               ? Response::$statusTexts[$statusCode]
