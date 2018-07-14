@@ -50,11 +50,32 @@ class DoctrineResourceProvider extends ResourceProviderBase implements ResourceP
         // TODO CLEAN UP  AND CHECK IF THE REQUEST NEED PAGINATION.
         $qb = $repository->createQueryBuilder('resource');
         $entityPropertiesName = $this->getEntityPropertiesName($resourceClass);
- 
+        dump($request->query->all());
         foreach ($request->query->all() as $key => $value) {
             if (in_array($key, $entityPropertiesName)) {
-                $qb->andwhere(sprintf('resource.%s = :%s', $key, $key));
-                $qb->setParameter($key, $value);
+                if(is_array($value)){
+                    //'u.username = :name OR u.username = :name2' 
+                    $string = '';
+                    $parameters = [];
+                    $count = 0;
+                    $space = '';
+                    foreach($value as $filterKey=>$filter){
+                        if($count > 0){
+                            $space = " OR";
+                        }
+                        $string .= sprintf('%s resource.%s = :%s%d', $space ,$key, $key,$filterKey);
+                        $parameters[$key.$filterKey]= $filter;
+                        $count +=1;
+                    }
+
+                    $qb->andwhere($string );
+                    $qb->setParameters($parameters);
+                }else{
+                    $qb->andwhere(sprintf('resource.%s = :%s', $key, $key));
+                    $qb->setParameter($key, $value);
+                }
+
+                
             }
         }
         // Handle sorting and order.
@@ -72,7 +93,6 @@ class DoctrineResourceProvider extends ResourceProviderBase implements ResourceP
         
         $pagerFanta = new Pagerfanta(new DoctrineORMAdapter($qb));
         
-        
         $page = 1;
 
         if (!empty($request->query->get('page'))) {
@@ -82,8 +102,6 @@ class DoctrineResourceProvider extends ResourceProviderBase implements ResourceP
             $max_per_page = $request->query->get('_max_per_page');
         }
         $pagerFanta->setMaxPerPage($max_per_page);
-
-        //die();
 
         $pagerFanta->setCurrentPage($page);
 
