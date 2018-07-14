@@ -49,7 +49,6 @@ class ExtraLoader extends Loader
             'show' => 'apiShow',
             'new' => 'apiNew',
             'delete' => 'apiDelete',
-
         ];
 
         foreach ($this->resourcesConfig as $key => $value) {
@@ -85,7 +84,7 @@ class ExtraLoader extends Loader
                         break;
                 }
     
-                $controller = sprintf('%s::%sAction',$value['controller'],$action);
+                $controller = sprintf('%s::%sAction', $value['controller'], $action);
                 $defaults = array(
                     '_controller' => $controller,
                     'redirect' => $redirectName,
