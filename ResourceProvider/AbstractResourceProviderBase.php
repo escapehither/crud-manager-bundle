@@ -13,7 +13,7 @@ namespace EscapeHither\CrudManagerBundle\ResourceProvider;
  *
  * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
  */
-Abstract class ResourceProviderBase
+abstract class AbstractResourceProviderBase
 {
 
     /**
@@ -26,6 +26,7 @@ Abstract class ResourceProviderBase
     {
         $this->links[$ref] = $url;
     }
+
     /**
      * Get the properties Of your entity.
      *
@@ -37,9 +38,9 @@ Abstract class ResourceProviderBase
         $resourceEntityReflector = new \ReflectionClass($resourceClass);
         $properties = $resourceEntityReflector->getProperties();
         $entityPropertiesName = [];
-    
+
         foreach ($properties as $property) {
-            $entityPropertiesName[] =$property->getName();
+            $entityPropertiesName[] = $property->getName();
         }
 
         return $entityPropertiesName;

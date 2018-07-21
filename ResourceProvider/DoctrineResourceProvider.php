@@ -13,16 +13,17 @@ use Doctrine\ORM\EntityManager;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Doctrine resource provider
  *
  * @author Georden Gaël LOUZAYADIO <georden@escapehither.com>
  */
-class DoctrineResourceProvider extends ResourceProviderBase implements ResourceProviderInterface
+class DoctrineResourceProvider extends AbstractResourceProviderBase implements ResourceProviderInterface
 {
-    
-    const DEFAULT_MAX_PER_PAGE = 5;
+
+    const DEFAULT_MAX_PER_PAGE = 10;
     /**
      * @var EntityManager The entity manager.
      */
@@ -32,15 +33,32 @@ class DoctrineResourceProvider extends ResourceProviderBase implements ResourceP
      */
     private $router;
 
+    /**
+     * Resource provider constructor.
+     *
+     * @param EntityManager $em     The entity manager.
+     * @param Router        $router The router service.
+     */
     public function __construct(EntityManager $em, Router $router)
     {
         $this->em = $em;
         $this->router = $router;
     }
 
+    /**
+     * Get the resource provider result.
+     *
+     * @param Request $request         The request.
+     * @param string  $resourceClass   The resource class.
+     * @param string  $format          The format.
+     * @param [type]  $method          The method.
+     * @param [type]  $methodArguments The method arguments.
+     *
+     * @return array/Pagerfanta
+     */
     public function getResult($request, $resourceClass, $format, $method = null, $methodArguments = null)
     {
-    
+
         $repository = $this->em->getRepository($resourceClass);
 
         if (null !== $method) {
@@ -50,39 +68,38 @@ class DoctrineResourceProvider extends ResourceProviderBase implements ResourceP
         // TODO CLEAN UP  AND CHECK IF THE REQUEST NEED PAGINATION.
         $qb = $repository->createQueryBuilder('resource');
         $entityPropertiesName = $this->getEntityPropertiesName($resourceClass);
-        dump($request->query->all());
+
         foreach ($request->query->all() as $key => $value) {
             if (in_array($key, $entityPropertiesName)) {
-                if(is_array($value)){
-                    //'u.username = :name OR u.username = :name2' 
+                if (is_array($value)) {
                     $string = '';
                     $parameters = [];
                     $count = 0;
                     $space = '';
-                    foreach($value as $filterKey=>$filter){
-                        if($count > 0){
+
+                    foreach ($value as $filterKey => $filter) {
+                        if ($count > 0) {
                             $space = " OR";
                         }
-                        $string .= sprintf('%s resource.%s = :%s%d', $space ,$key, $key,$filterKey);
-                        $parameters[$key.$filterKey]= $filter;
-                        $count +=1;
+
+                        $string .= sprintf('%s resource.%s = :%s%d', $space, $key, $key, $filterKey);
+                        $parameters[$key.$filterKey] = $filter;
+                        $count += 1;
                     }
 
-                    $qb->andwhere($string );
+                    $qb->andwhere($string);
                     $qb->setParameters($parameters);
-                }else{
+                } else {
                     $qb->andwhere(sprintf('resource.%s = :%s', $key, $key));
                     $qb->setParameter($key, $value);
                 }
-
-                
             }
         }
         // Handle sorting and order.
         $sort = $request->query->get('_sort');
         $order = $request->query->get('_order');
-        $max_per_page = self::DEFAULT_MAX_PER_PAGE;
-        
+        $maxPerPage = self::DEFAULT_MAX_PER_PAGE;
+
         if (!empty($sort) && in_array($sort, $entityPropertiesName)) {
             if ('asc' === $order) {
                 $qb->orderBy(sprintf('resource.%s', $sort), $order);
@@ -90,18 +107,19 @@ class DoctrineResourceProvider extends ResourceProviderBase implements ResourceP
                 $qb->orderBy(sprintf('resource.%s', $sort), 'desc');
             }
         }
-        
+
         $pagerFanta = new Pagerfanta(new DoctrineORMAdapter($qb));
-        
         $page = 1;
 
         if (!empty($request->query->get('page'))) {
             $page = $request->query->get('page');
         }
+
         if (!empty($request->query->get('_max_per_page')) && is_int($request->query->get('_max_per_page'))) {
-            $max_per_page = $request->query->get('_max_per_page');
+            $maxPerPage = $request->query->get('_max_per_page');
         }
-        $pagerFanta->setMaxPerPage($max_per_page);
+
+        $pagerFanta->setMaxPerPage($maxPerPage);
 
         $pagerFanta->setCurrentPage($page);
 

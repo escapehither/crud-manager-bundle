@@ -56,7 +56,7 @@ class ExtraLoader extends Loader
             $dataConfig = explode('\\', $value['controller']);
             $controllerName = preg_replace('/Controller/', '', $dataConfig[count($dataConfig) - 1]);
             $redirectName = 'api.'.$key.'_index';
-    
+
             foreach ($actionList as $actionKey => $action) {
                 $routeName = 'api.'.$key.'_'.$actionKey;
 
@@ -83,7 +83,7 @@ class ExtraLoader extends Loader
                         $method = ['DELETE'];
                         break;
                 }
-    
+
                 $controller = sprintf('%s::%sAction', $value['controller'], $action);
                 $defaults = array(
                     '_controller' => $controller,

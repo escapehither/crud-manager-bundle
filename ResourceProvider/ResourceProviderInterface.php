@@ -16,5 +16,16 @@ namespace EscapeHither\CrudManagerBundle\ResourceProvider;
  */
 interface ResourceProviderInterface
 {
+    /**
+     * Get the resource provider result.
+     *
+     * @param Request  $request         The request.
+     * @param string   $resourceClass   The resource class.
+     * @param string   $format          The format.
+     * @param callable $method          The method.
+     * @param mixed    $methodArguments The method arguments.
+     *
+     * @return mixed
+     */
     public function getResult($request, $resourceClass, $format, $method = null, $methodArguments = null);
 }

@@ -53,7 +53,6 @@ class ListRequestHandler
      */
     public function process()
     {
-        
         $repositoryArguments = $this->requestParameterHandler->getRepositoryArguments();
         $repositoryMethod = $this->requestParameterHandler->getRepositoryMethod();
 
