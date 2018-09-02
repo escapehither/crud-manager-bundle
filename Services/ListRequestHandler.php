@@ -56,6 +56,6 @@ class ListRequestHandler
         $repositoryArguments = $this->requestParameterHandler->getRepositoryArguments();
         $repositoryMethod = $this->requestParameterHandler->getRepositoryMethod();
 
-        return $this->resourceProvider->getResult($this->request, $this->resourceClass, $this->format);
+        return $this->resourceProvider->getResult($this->request, $this->resourceClass, $this->format, $repositoryMethod, $repositoryArguments);
     }
 }

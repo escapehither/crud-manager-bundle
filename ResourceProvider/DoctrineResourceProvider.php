@@ -62,7 +62,7 @@ class DoctrineResourceProvider extends AbstractResourceProviderBase implements R
         $repository = $this->em->getRepository($resourceClass);
 
         if (null !== $method) {
-            return $this->getResourcesFromMethod($method, $repositoryArguments, $repository);
+            return $this->getResourcesFromMethod($method, $methodArguments, $repository);
         }
 
         // TODO CLEAN UP  AND CHECK IF THE REQUEST NEED PAGINATION.
