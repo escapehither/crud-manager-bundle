@@ -53,7 +53,7 @@ before_script:
 - docker-php-ext-install mbstring mcrypt pdo_pgsql curl json intl gd xml zip bz2 opcache sockets
 # Install and run Composer
 - curl -sS https://getcomposer.org/installer | php
-- php composer.phar install
+- php -d memory_limit=-1 composer.phar install
 
 # Run our tests
 # If Xdebug was installed you can generate a coverage report and see code coverage metrics.
