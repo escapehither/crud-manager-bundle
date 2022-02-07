@@ -15,13 +15,15 @@
         "fzaninotto/faker": "^1.6",
         "knplabs/knp-menu-bundle": "^2.1",
         "guzzlehttp/guzzle": "^6.2",
-        "symfony/serializer": "^3.2",
+        "symfony/serializer": "~3.0|~4.0",
         "white-october/pagerfanta-bundle": "^1.0",
-        "lexik/jwt-authentication-bundle": "^2.4",
-        "nelmio/api-doc-bundle": "^2.13"
+        "lexik/jwt-authentication-bundle": "~2.4",
+        "nelmio/api-doc-bundle": "~2.0|3.0",
+        "symfony/dependency-injection": "~3.0|~4.0",
+        "symfony/form": "~3.0|~4.0",
+        "symfony/framework-bundle": "~3.0|~4.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "behat/symfony2-extension": "^2.1",
@@ -33,7 +35,8 @@
         "behat/mink-zombie-driver": "^1.4",
         "behat/mink-extension": "^2.2",
         "behat/web-api-extension": "~1.0@dev",
-        "escapestudios/symfony2-coding-standard": "~2.0"
+        "escapestudios/symfony2-coding-standard": "~2.0",
+        "fzaninotto/faker": "^1.8"
     },
 
     "autoload": {

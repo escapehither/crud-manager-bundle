@@ -6,6 +6,7 @@ parameters:
     escapehither.crud_form_factory_handler.class: EscapeHither\CrudManagerBundle\Services\FormFactoryHandler
     escapehither.crud_event_dispatcher.class: EscapeHither\CrudManagerBundle\Services\CrudEventDispatcher
     escapehither.crud_flash_message_manager.class: EscapeHither\CrudManagerBundle\Services\FlashMessageManager
+    escapehither.crud_doctrine_resource_provider.class: EscapeHither\CrudManagerBundle\ResourceProvider\DoctrineResourceProvider
     resource_voter.class: EscapeHither\CrudManagerBundle\Security\ResourceVoter
     api_exeption_subscriber.class: EscapeHither\CrudManagerBundle\EventListener\ApiExceptionSubscriber
 
@@ -27,7 +28,11 @@ services:
 
     escapehither.crud_list_request_handler:
         class: "%escapehither.crud_list_request_handler.class%"
-        arguments: ["@escapehither.crud_request_parameter_handler","@doctrine.orm.entity_manager"]
+        arguments: ["@escapehither.crud_request_parameter_handler","@escapehither.crud_doctrine_resource_provider"]
+    
+    escapehither.crud_doctrine_resource_provider:
+        class: "%escapehither.crud_doctrine_resource_provider.class%"
+        arguments: ["@doctrine.orm.entity_manager","@router"]    
 
     escapehither.crud_single_resource_request_handler:
         class: "%escapehither.crud_single_resource_request_handler.class%"
