@@ -9,7 +9,6 @@
         "symfony/orm-pack": "^2.2",
         "symfony/polyfill-apcu": "^1.0",
         "sensio/distribution-bundle": "^5.0",
-        "sensio/framework-extra-bundle": "^3.0.2",
         "stof/doctrine-extensions-bundle": "^1.2",
         "fzaninotto/faker": "^1.6",
         "knplabs/knp-menu-bundle": "^2.1",
