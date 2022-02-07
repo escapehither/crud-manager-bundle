@@ -44,8 +44,8 @@
     },
     "extra": {
         "branch-alias": {
-             "dev-master": "master",
-             "dev-develop": "develop"
+             "master": "master-dev",
+             "develop": "develop-dev"
         }
     },
     "authors": [
