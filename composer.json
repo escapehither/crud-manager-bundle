@@ -5,7 +5,7 @@
     "type": "symfony-bundle",
     "require": {
         "php": ">=5.5.9",
-        "symfony/symfony": "4.*",
+        "symfony/symfony": "4.4.*",
         "symfony/orm-pack": "^2.2",
         "symfony/polyfill-apcu": "^1.0",
         "stof/doctrine-extensions-bundle": "^1.2",
